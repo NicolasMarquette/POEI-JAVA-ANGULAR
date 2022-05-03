@@ -23,7 +23,7 @@ public class DaoAuthentificationMySql implements DaoAuthentification {
 
 		Authentification auth = null;
 		
-		Connection conn = ConnectionManager.getConnectionManager().getConn();
+		Connection conn = ConnectionManager.getInstance().getConn();
 		
 		String sql = "SELECT * FROM Authentification WHERE login = ? ";
 

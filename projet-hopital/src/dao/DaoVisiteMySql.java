@@ -26,7 +26,7 @@ public class DaoVisiteMySql implements DaoVisite {
 	@Override
 	public void create(Visite obj) throws ClassNotFoundException, SQLException, IOException {
 		
-		Connection conn = ConnectionManager.getConnectionManager().getConn();
+		Connection conn = ConnectionManager.getInstance().getConn();
 
 		String sql = "insert into visites(idpatient, date, medecin, num_salle, tarif) values (?, ?, ?, ?, ?)";
 
