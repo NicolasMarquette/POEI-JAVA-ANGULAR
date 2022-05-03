@@ -22,7 +22,7 @@ public class ConnectionManager {
 		setConnection();
 	}
 
-	public static ConnectionManager getConnectionManager() throws ClassNotFoundException, IOException, SQLException {
+	public static ConnectionManager getInstance() throws ClassNotFoundException, IOException, SQLException {
 
 		if (connectionManager == null) {
 			connectionManager = new ConnectionManager();
@@ -30,15 +30,15 @@ public class ConnectionManager {
 		return connectionManager;
 	}
 
-	public Connection getConn() {
-		return conn;
-	}
-
-	public void closeConnection() throws SQLException {
+	public void closeConn() throws SQLException {
 
 		if (conn != null) {
 			conn.close();
 		}
+	}
+
+	public Connection getConn() {
+		return conn;
 	}
 
 	private void setConnection() throws IOException, ClassNotFoundException, SQLException {

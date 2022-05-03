@@ -23,7 +23,7 @@ public class DaoPatientMySql implements DaoPatient {
 
 		Patient patient = null;
 		
-		Connection conn = ConnectionManager.getConnectionManager().getConn();
+		Connection conn = ConnectionManager.getInstance().getConn();
 		
 		String sql = "SELECT * FROM patients WHERE id = ? ";
 
@@ -45,7 +45,7 @@ public class DaoPatientMySql implements DaoPatient {
 	@Override
 	public void create(Patient obj) throws ClassNotFoundException, SQLException, IOException {
 
-		Connection conn = ConnectionManager.getConnectionManager().getConn();
+		Connection conn = ConnectionManager.getInstance().getConn();
 
 		String sql = "insert into patients(id, nom, prenom, date_naissance, adresse, telephone) values (?, ?, ?, ?, ?, ?)";
 
