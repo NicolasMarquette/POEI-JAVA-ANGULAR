@@ -2,10 +2,10 @@ package view;
 
 import java.io.IOException;
 import java.sql.SQLException;
-
 import java.util.Scanner;
 
 import controller.Controller;
+import model.Patient;
 
 public class MenuPrincipal implements MenuView {
 
@@ -23,7 +23,6 @@ public class MenuPrincipal implements MenuView {
 
 	@Override
 	public void afficherMenuPrincipal() throws ClassNotFoundException, SQLException, IOException {
-
 
 		System.out.println("Bienvenue √† l'hopital. \n " + "Veuillez choisir parmi les options suivantes : \n"
 				+ "1. Menu Login\n" + "2. Quitter l'hopital");
@@ -78,8 +77,8 @@ public class MenuPrincipal implements MenuView {
 
 	@Override
 	public void afficherMenuSecretaire() throws ClassNotFoundException, SQLException, IOException {
-		
-    System.out.println("Bonjour " // Afficher le nom de la secretaire : getSecretaire
+
+		System.out.println("Bonjour " // Afficher le nom de la secretaire : getSecretaire
 		);
 		System.out.println("Veuillez choisir parmi les options suivantes :\n"
 				+ "1. Ajouter un patient √† la file d'attente\n" + "2. Afficher la file d'attente \n"
@@ -108,41 +107,42 @@ public class MenuPrincipal implements MenuView {
 
 	public void menuPatientFile(int idPatient) throws ClassNotFoundException, SQLException, IOException {
 
-		String nomPatient;
-		String prenomPatient;
-		String datePatient;
-		String adrPatient;
-		String telPatient;
+		String nomPatient = "";
+		String prenomPatient = "";
+		String datePatient = "";
+		String adrPatient = "";
+		String telPatient = "";
 		if (idPatient == 1) {
 			// Find by ID de patient
-			controller.addPatient();// il ira chercher la requette SQL √† partir de DAO
-			System.out.println("Patient n¬∞" + idPatient + " ajout√© √† la file");
+			Patient patient = new Patient(idPatient, nomPatient, prenomPatient, datePatient, adrPatient, telPatient);
+			controller.addPatient(patient);// il ira chercher la requette SQL √† partir de DAO
+			System.out.println("Patient n" + idPatient + " ajoutÈ ‡† la file");
 			afficherMenuSecretaire();
 		} else {
 			System.out.println("Saisir le nom : ");
 			nomPatient = clavierString.nextLine();
-			System.out.println("Saisir le pr√©nom : ");
+			System.out.println("Saisir le prÈnom : ");
 			prenomPatient = clavierString.nextLine();
 			System.out.println("Saisir la date de naissance : (AAAA-MM-JJ)");
 			datePatient = clavierString.nextLine();
-			System.out.println("Voulez vous saisir l'adresse et le t√©l√©phone? O/N");
+			System.out.println("Voulez vous saisir l'adresse et le tÈlÈphone? O/N");
 			String choixPatient1 = clavierString.nextLine();
 			switch (choixPatient1) {
 			case "O":
 			case "o":
 				System.out.println("Saisir l'adresse");
 				adrPatient = clavierString.nextLine();
-				System.out.println("Saisir le t√©l√©phone");
+				System.out.println("Saisir le tÈlÈphone");
 				telPatient = clavierString.nextLine();
-				System.out.println("Patient " + idPatient + " ajout√©.");
+				System.out.println("Patient n" + idPatient + " ajoutÈ.");
 				afficherMenuSecretaire();
 				break;
 			case "N":
 			case "n":
-				// Patient patient= new
-				// Patient(nomPatient,prenomPatient,datePatient,adrPatient,telPatient);
-				controller.addPatient();
-				System.out.println("Patient " + idPatient + " ajout√©.");
+				Patient patient1 = new Patient(idPatient, nomPatient, prenomPatient, datePatient, adrPatient,
+						telPatient);
+				controller.addPatient(patient1);
+				System.out.println("Patient n" + idPatient + " ajout√©.");
 				afficherMenuSecretaire();
 				break;
 
@@ -152,7 +152,6 @@ public class MenuPrincipal implements MenuView {
 
 	@Override
 	public void afficherMenuMedecin() throws ClassNotFoundException, SQLException, IOException {
-
 
 		System.out.println("Bonjour "); // Ajouter le nom du medecin et sa salle
 		System.out.println("Veuillez choisir parmi les options suivantes : \n"
@@ -170,7 +169,7 @@ public class MenuPrincipal implements MenuView {
 			afficherMenuMedecin();
 			break;
 		case 3:
-			System.out.println("Liste des visites sauvegard√©es en BD.");
+			System.out.println("Liste des visites sauvegardÈes en BD.");
 			afficherMenuMedecin();
 			break;
 		case 4:
@@ -178,5 +177,4 @@ public class MenuPrincipal implements MenuView {
 			break;
 		}
 	}
-
 }
