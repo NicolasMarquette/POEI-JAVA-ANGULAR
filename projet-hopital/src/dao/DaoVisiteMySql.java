@@ -1,8 +1,12 @@
 package dao;
 
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
+import db.ConnectionManager;
 import model.Visite;
 
 public class DaoVisiteMySql implements DaoVisite {
@@ -20,8 +24,19 @@ public class DaoVisiteMySql implements DaoVisite {
 	}
 
 	@Override
-	public void create(Visite obj) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
+	public void create(Visite obj) throws ClassNotFoundException, SQLException, IOException {
+		
+		Connection conn = ConnectionManager.getConnectionManager().getConn();
+
+		String sql = "insert into visites(idpatient, date, medecin, num_salle, tarif) values (?, ?, ?, ?, ?)";
+
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setInt(1, obj.getIdPatient());
+		ps.setString(2, obj.getDate());
+		ps.setString(3, obj.getMedecin());
+		ps.setInt(4, obj.getNum_salle());
+		ps.setInt(5, obj.getTarif());
+		ps.executeUpdate();
 		
 	}
 
