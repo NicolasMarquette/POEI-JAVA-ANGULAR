@@ -1,5 +1,7 @@
 package view;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 import controller.Controller;
@@ -19,7 +21,7 @@ public class MenuPrincipal implements MenuView {
 	}
 
 	@Override
-	public void afficherMenuPrincipal() {
+	public void afficherMenuPrincipal() throws ClassNotFoundException, SQLException, IOException {
 
 		System.out.println("Bienvenue à l'hopital. \n " + "Veuillez choisir parmi les options suivantes : \n"
 				+ "1. Menu Login\n" + "2. Quitter l'hopital");
@@ -41,7 +43,7 @@ public class MenuPrincipal implements MenuView {
 	}
 
 	@Override
-	public void afficherMenuAuthentification() {
+	public void afficherMenuAuthentification() throws ClassNotFoundException, SQLException, IOException {
 		System.out.println("Veuillez vous identifiez.");
 		System.out.println("Entrez votre username : ");
 		String username = clavierString.nextLine();
@@ -72,7 +74,7 @@ public class MenuPrincipal implements MenuView {
 	}
 
 	@Override
-	public void afficherMenuSecretaire() {
+	public void afficherMenuSecretaire() throws ClassNotFoundException, SQLException, IOException {
 		System.out.println("Bonjour " // Afficher le nom de la secretaire : getSecretaire
 		);
 		System.out.println("Veuillez choisir parmi les options suivantes :\n"
@@ -100,7 +102,7 @@ public class MenuPrincipal implements MenuView {
 
 	}
 
-	public void menuPatientFile(int idPatient) {
+	public void menuPatientFile(int idPatient) throws ClassNotFoundException, SQLException, IOException {
 		String nomPatient;
 		String prenomPatient;
 		String datePatient;
@@ -144,7 +146,7 @@ public class MenuPrincipal implements MenuView {
 	}
 
 	@Override
-	public void afficherMenuMedecin() {
+	public void afficherMenuMedecin() throws ClassNotFoundException, SQLException, IOException {
 		System.out.println("Bonjour "); // Ajouter le nom du medecin et sa salle
 		System.out.println("Veuillez choisir parmi les options suivantes : \n"
 				+ "1. Accueillir le prochain patient (rendre la salle disponible)\n"
