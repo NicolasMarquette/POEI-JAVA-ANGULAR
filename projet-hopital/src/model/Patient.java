@@ -89,6 +89,14 @@ public class Patient {
 		this.telephone = telephone;
 	}
 
+	public String getDate_naissance() {
+		return date_naissance;
+	}
+
+	public void setDate_naissance(String date_naissance) {
+		this.date_naissance = date_naissance;
+	}
+
 	@Override
 	public String toString() {
 		return "Patient [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", age=" + age + ", adresse=" + adresse
