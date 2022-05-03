@@ -32,7 +32,8 @@ public class Patient {
 		this.date_naissance = date_naissance;
 	}
 
-	public Patient(String nom, String prenom, String date_naissance) {
+	public Patient(int id, String nom, String prenom, String date_naissance) {
+		this.id=id;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.date_naissance = date_naissance;
