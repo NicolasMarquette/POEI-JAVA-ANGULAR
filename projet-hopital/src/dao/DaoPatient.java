@@ -1,5 +1,7 @@
 package dao;
 
-public interface DaoPatient {
+import model.Patient;
+
+public interface DaoPatient extends Dao<Patient, Integer>{
 
 }

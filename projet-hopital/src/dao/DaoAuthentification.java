@@ -1,5 +1,7 @@
 package dao;
 
-public interface DaoAuthentification {
+import model.Authentification;
+
+public interface DaoAuthentification extends Dao<Authentification, String> {
 
 }
