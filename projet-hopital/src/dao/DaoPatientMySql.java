@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 import db.ConnectionManager;
-import model.Authentification;
 import model.Patient;
 
 public class DaoPatientMySql implements DaoPatient {
