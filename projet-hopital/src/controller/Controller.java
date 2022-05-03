@@ -22,7 +22,7 @@ public class Controller {
 		super();
 		this.view = view;
 		view.setController(this);
-		hopital = new Hopital();
+		hopital = new Hopital(); //Hopital.getHopital()
 		verif = new VerificationAuthentification();
 	}
 
