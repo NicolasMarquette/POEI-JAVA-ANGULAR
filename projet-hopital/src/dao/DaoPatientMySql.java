@@ -32,10 +32,10 @@ public class DaoPatientMySql implements DaoPatient {
 		ps.setInt(1, id);
 		ResultSet rs = ps.executeQuery();
 
-//		if (rs.next()) {
-//			patient = new Authentification(rs.getInt("id"), rs.getString("nom"), rs.getString("prenom"),
-//					rs.getString("data-naissance"), rs.getInt("age), rs.getString("adresse"), rs.getString("telephone");
-//		}
+		if (rs.next()) {
+			patient = new Patient(rs.getInt("id"), rs.getString("nom"), rs.getString("prenom"),
+					rs.getString("date_naissance"), rs.getInt("age"), rs.getString("adresse"), rs.getString("telephone"));
+		}
 		
 		ps.close();
 		rs.close();
@@ -48,14 +48,15 @@ public class DaoPatientMySql implements DaoPatient {
 
 		Connection conn = ConnectionManager.getConnectionManager().getConn();
 
-		String sql = "insert into patients(nom, prenom, date-naissance, adresse, telephone) values (?, ?, ?, ?, ?)";
+		String sql = "insert into patients(id, nom, prenom, date_naissance, adresse, telephone) values (?, ?, ?, ?, ?, ?)";
 
 		PreparedStatement ps = conn.prepareStatement(sql);
-//		ps.setString(1, obj.getNom());
-//		ps.setString(2, obj.getPrenom());
-//		ps.setString(3, obj.getDateNaissance());
-//		ps.setString(4, obj.getAdresse());
-//		ps.setString(4, obj.getTelephone());
+		ps.setInt(1, obj.getId());
+		ps.setString(2, obj.getNom());
+		ps.setString(3, obj.getPrenom());
+		ps.setString(4, obj.getDate_naissance());
+		ps.setString(5, obj.getAdresse());
+		ps.setString(6, obj.getTelephone());
 		ps.executeUpdate();
 	}
 
