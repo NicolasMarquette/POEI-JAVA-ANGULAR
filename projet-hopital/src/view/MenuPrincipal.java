@@ -35,6 +35,7 @@ public class MenuPrincipal implements MenuView {
 			break;
 		case 2:
 			System.out.println("Au revoir!");
+			System.exit(0);
 			break;
 		default:
 			System.out.println("Votre saisie est incorrecte.");
@@ -67,6 +68,7 @@ public class MenuPrincipal implements MenuView {
 				}
 
 			else {
+				System.out.println("Les identifiants sont incorrects!\n");
 				afficherMenuPrincipal();
 			}
 		} else {
@@ -102,6 +104,9 @@ public class MenuPrincipal implements MenuView {
 		case 4:
 			afficherMenuPrincipal();
 			break;
+		default:
+			System.out.println("Saisie incorrecte");
+			afficherMenuSecretaire();
 		}
 
 	}
@@ -115,7 +120,7 @@ public class MenuPrincipal implements MenuView {
 		String telPatient = "";
 		if (idPatient == 1) {					
 			//Patient patient = new Patient(idPatient, nomPatient, prenomPatient, datePatient, adrPatient, telPatient);
-			Patient patient = controller.findById(idPatient);			
+			Patient patient = controller.findByIdPat(idPatient);			
 			controller.addPatient(patient);// il ira chercher la requette SQL Ã  partir de DAO
 			System.out.println("Patient n" + idPatient + " ajouté à  la file");
 			afficherMenuSecretaire();
@@ -162,7 +167,8 @@ public class MenuPrincipal implements MenuView {
 		switch (choixMed) {
 		case 1:
 			System.out.println(controller.getProchainPatient());
-			controller.addVisite();
+			//Visite visite = 
+			//controller.addVisite(visite);
 			afficherMenuMedecin();
 			break;
 		case 2:
@@ -176,6 +182,10 @@ public class MenuPrincipal implements MenuView {
 		case 4:
 			afficherMenuPrincipal();
 			break;
+		default:
+			System.out.println("Saisie incorrecte");
+			afficherMenuMedecin();	
+		
 		}
 	}
 }
