@@ -1,23 +1,19 @@
 package model;
 
-import java.util.LinkedList;
-
 public class SalleConsultation {
 	
 private int id_salle;
 private String medecin;
-private LinkedList <Visite> listVisite;
-
+private ListVisite listVisite;
 
 public SalleConsultation() {
 }
 
-public SalleConsultation(int id_salle, String medecin, LinkedList<Visite> listVisite) {
+public SalleConsultation(int id_salle, String medecin, ListVisite listVisite) {
 	this.id_salle = id_salle;
 	this.medecin = medecin;
 	this.listVisite = listVisite;
 }
-
 
 public int getId_salle() {
 	return id_salle;
@@ -31,15 +27,12 @@ public String getMedecin() {
 public void setMedecin(String medecin) {
 	this.medecin = medecin;
 }
-public LinkedList<Visite> getListVisite() {
+public ListVisite getListVisite() {
 	return listVisite;
 }
-public void setListVisite(LinkedList<Visite> listVisite) {
-	this.listVisite = listVisite;
-}
 
-public void addVisite (Visite visite) { 
-	listVisite.add(visite);
+public void addVisite (int id_patient, int tarif) { 
+	listVisite.setVisites(id_patient, medecin, id_salle, tarif);
 }
 
 }
