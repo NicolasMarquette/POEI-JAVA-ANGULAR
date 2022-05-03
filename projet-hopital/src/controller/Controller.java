@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.Scanner;
 
+import dao.DaoPatientMySql;
 import model.Hopital;
 import model.Patient;
 import model.VerificationAuthentification;
@@ -18,9 +19,9 @@ public class Controller {
 	private Hopital hopital;
 	private VerificationAuthentification verif;
 	private LinkedList<Patient> list;
+	private DaoPatientMySql daoPatient;
 
 	public Controller(MenuView view) {
-		super();
 		this.view = view;
 		view.setController(this);
 		hopital = Hopital.getHopital();
@@ -57,6 +58,11 @@ public class Controller {
 	public void addVisite() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public Patient findById(int idPatient) throws ClassNotFoundException, SQLException, IOException {
+		Patient patient = daoPatient.findById(idPatient);
+		return patient;
 	}
 
 }
