@@ -17,12 +17,13 @@ public class Controller {
 	private Scanner clavierString = new Scanner(System.in);
 	private Hopital hopital;
 	private VerificationAuthentification verif;
+	private LinkedList<Patient> list;
 
 	public Controller(MenuView view) {
 		super();
 		this.view = view;
 		view.setController(this);
-		hopital = new Hopital(); //Hopital.getHopital()
+		hopital = Hopital.getHopital();
 		verif = new VerificationAuthentification();
 	}
 
@@ -38,21 +39,18 @@ public class Controller {
 		//Implémenter le get et setMetier à partir de la DB
 	}
 
-	public void verifPatient(int idPatient) {
-		
-		}
-
-	public void addPatient() { //pas oublier le paramètre Patient
-		
+	
+	public void addPatient(Patient patient) { //pas oublier le paramètre Patient
+		hopital.addPatient(patient);
 	}
 	
-	public Patient getProchainPatient() { //hopital.getProchainPatient..
-		Patient patient = new Patient(); 
+	public Patient getProchainPatient() { 
+		Patient patient = hopital.getProchainPatientEnFileAttente(); 
 		return patient;
 	}
 
 	public LinkedList<Patient> getFile() { 
-		LinkedList<Patient> list=null;
+		list = hopital.getFileAttente();
 		return list;
 	}
 
