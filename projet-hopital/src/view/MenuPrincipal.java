@@ -1,5 +1,8 @@
 package view;
 
+import java.io.IOException;
+import java.sql.SQLException;
+
 import java.util.Scanner;
 
 import controller.Controller;
@@ -19,9 +22,10 @@ public class MenuPrincipal implements MenuView {
 	}
 
 	@Override
-	public void afficherMenuPrincipal() {
+	public void afficherMenuPrincipal() throws ClassNotFoundException, SQLException, IOException {
 
-		System.out.println("Bienvenue à l'hopital. \n " + "Veuillez choisir parmi les options suivantes : \n"
+
+		System.out.println("Bienvenue Ã  l'hopital. \n " + "Veuillez choisir parmi les options suivantes : \n"
 				+ "1. Menu Login\n" + "2. Quitter l'hopital");
 		int choix = clavierint.nextInt();
 
@@ -41,7 +45,8 @@ public class MenuPrincipal implements MenuView {
 	}
 
 	@Override
-	public void afficherMenuAuthentification() {
+	public void afficherMenuAuthentification() throws ClassNotFoundException, SQLException, IOException {
+
 		System.out.println("Veuillez vous identifiez.");
 		System.out.println("Entrez votre username : ");
 		String username = clavierString.nextLine();
@@ -72,11 +77,12 @@ public class MenuPrincipal implements MenuView {
 	}
 
 	@Override
-	public void afficherMenuSecretaire() {
-		System.out.println("Bonjour " // Afficher le nom de la secretaire : getSecretaire
+	public void afficherMenuSecretaire() throws ClassNotFoundException, SQLException, IOException {
+		
+    System.out.println("Bonjour " // Afficher le nom de la secretaire : getSecretaire
 		);
 		System.out.println("Veuillez choisir parmi les options suivantes :\n"
-				+ "1. Ajouter un patient à la file d'attente\n" + "2. Afficher la file d'attente \n"
+				+ "1. Ajouter un patient Ã  la file d'attente\n" + "2. Afficher la file d'attente \n"
 				+ "3. Afficher le prochain patient de la file \n" + "4. Menu principal");
 		int choixSec = clavierint.nextInt();
 		switch (choixSec) {
@@ -100,7 +106,8 @@ public class MenuPrincipal implements MenuView {
 
 	}
 
-	public void menuPatientFile(int idPatient) {
+	public void menuPatientFile(int idPatient) throws ClassNotFoundException, SQLException, IOException {
+
 		String nomPatient;
 		String prenomPatient;
 		String datePatient;
@@ -108,26 +115,26 @@ public class MenuPrincipal implements MenuView {
 		String telPatient;
 		if (idPatient == 1) {
 			// Find by ID de patient
-			controller.addPatient();// il ira chercher la requette SQL à partir de DAO
-			System.out.println("Patient n°" + idPatient + " ajouté à la file");
+			controller.addPatient();// il ira chercher la requette SQL Ã  partir de DAO
+			System.out.println("Patient nÂ°" + idPatient + " ajoutÃ© Ã  la file");
 			afficherMenuSecretaire();
 		} else {
 			System.out.println("Saisir le nom : ");
 			nomPatient = clavierString.nextLine();
-			System.out.println("Saisir le prénom : ");
+			System.out.println("Saisir le prÃ©nom : ");
 			prenomPatient = clavierString.nextLine();
 			System.out.println("Saisir la date de naissance : (AAAA-MM-JJ)");
 			datePatient = clavierString.nextLine();
-			System.out.println("Voulez vous saisir l'adresse et le téléphone? O/N");
+			System.out.println("Voulez vous saisir l'adresse et le tÃ©lÃ©phone? O/N");
 			String choixPatient1 = clavierString.nextLine();
 			switch (choixPatient1) {
 			case "O":
 			case "o":
 				System.out.println("Saisir l'adresse");
 				adrPatient = clavierString.nextLine();
-				System.out.println("Saisir le téléphone");
+				System.out.println("Saisir le tÃ©lÃ©phone");
 				telPatient = clavierString.nextLine();
-				System.out.println("Patient " + idPatient + " ajouté.");
+				System.out.println("Patient " + idPatient + " ajoutÃ©.");
 				afficherMenuSecretaire();
 				break;
 			case "N":
@@ -135,7 +142,7 @@ public class MenuPrincipal implements MenuView {
 				// Patient patient= new
 				// Patient(nomPatient,prenomPatient,datePatient,adrPatient,telPatient);
 				controller.addPatient();
-				System.out.println("Patient " + idPatient + " ajouté.");
+				System.out.println("Patient " + idPatient + " ajoutÃ©.");
 				afficherMenuSecretaire();
 				break;
 
@@ -144,7 +151,9 @@ public class MenuPrincipal implements MenuView {
 	}
 
 	@Override
-	public void afficherMenuMedecin() {
+	public void afficherMenuMedecin() throws ClassNotFoundException, SQLException, IOException {
+
+
 		System.out.println("Bonjour "); // Ajouter le nom du medecin et sa salle
 		System.out.println("Veuillez choisir parmi les options suivantes : \n"
 				+ "1. Accueillir le prochain patient (rendre la salle disponible)\n"
@@ -161,7 +170,7 @@ public class MenuPrincipal implements MenuView {
 			afficherMenuMedecin();
 			break;
 		case 3:
-			System.out.println("Liste des visites sauvegardées en BD.");
+			System.out.println("Liste des visites sauvegardÃ©es en BD.");
 			afficherMenuMedecin();
 			break;
 		case 4:
