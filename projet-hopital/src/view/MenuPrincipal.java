@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 import controller.Controller;
+import dao.DaoPatientMySql;
 import model.Patient;
 
 public class MenuPrincipal implements MenuView {
@@ -112,9 +113,9 @@ public class MenuPrincipal implements MenuView {
 		String datePatient = "";
 		String adrPatient = "";
 		String telPatient = "";
-		if (idPatient == 1) {
-			// Find by ID de patient
-			Patient patient = new Patient(idPatient, nomPatient, prenomPatient, datePatient, adrPatient, telPatient);
+		if (idPatient == 1) {					
+			//Patient patient = new Patient(idPatient, nomPatient, prenomPatient, datePatient, adrPatient, telPatient);
+			Patient patient = controller.findById(idPatient);			
 			controller.addPatient(patient);// il ira chercher la requette SQL Ã  partir de DAO
 			System.out.println("Patient n" + idPatient + " ajouté à  la file");
 			afficherMenuSecretaire();
@@ -142,7 +143,7 @@ public class MenuPrincipal implements MenuView {
 				Patient patient1 = new Patient(idPatient, nomPatient, prenomPatient, datePatient, adrPatient,
 						telPatient);
 				controller.addPatient(patient1);
-				System.out.println("Patient n" + idPatient + " ajoutÃ©.");
+				System.out.println("Patient n" + idPatient + " ajouté.");
 				afficherMenuSecretaire();
 				break;
 
