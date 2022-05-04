@@ -141,6 +141,7 @@ public class MenuPrincipal implements MenuView {
 		System.out.println(patient);
 		if (patient != null) {
 			controller.addPatient(patient);// il ira chercher la requette SQL Ã  partir de DAO
+			controller.ecrireRapport(idPatient);
 			System.out.println("Patient n" + idPatient + " ajouté à  la file");
 			afficherMenuSecretaire();
 		} else {
@@ -166,11 +167,12 @@ public class MenuPrincipal implements MenuView {
 			}
 			controller.createPatient(patient1);
 			controller.addPatient(controller.findByIdPat(idPatient));
+			controller.ecrireRapport(idPatient);
 			System.out.println("Patient n" + idPatient + " ajouté.");
 			afficherMenuSecretaire();
 
 		}
-		controller.ecrireRapport(idPatient);
+		
 		
 	}
 
