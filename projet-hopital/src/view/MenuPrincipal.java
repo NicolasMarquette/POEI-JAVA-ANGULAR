@@ -162,7 +162,8 @@ public class MenuPrincipal implements MenuView {
 		System.out.println("Veuillez choisir parmi les options suivantes : \n"
 				+ "1. Accueillir le prochain patient (rendre la salle disponible)\n"
 				+ "2. Afficher la file d'attente \n" + "3. Afficher la liste des visites\n"
-				+ "4.Sauvegarder en base les visites \n" + "5. Menu principal");
+				+ "4. Sauvegarder en base les visites \n" + "5. Afficher la liste des visites de la BD\n"
+						+ "6. Menu principal");
 		int choixMed = clavierint.nextInt();
 		switch (choixMed) {
 		case 1:
@@ -192,6 +193,10 @@ public class MenuPrincipal implements MenuView {
 			afficherMenuMedecin();
 			break;
 		case 5:
+			System.out.println(controller.voirVisitesEnBD());
+			afficherMenuMedecin();
+			break;
+		case 6:
 			afficherMenuPrincipal();
 			break;
 

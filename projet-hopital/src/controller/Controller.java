@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 import dao.DaoAuthentificationMySql;
@@ -102,6 +103,10 @@ public class Controller {
 		for(Visite v : liste)
 			new DaoVisiteMySql().create(v);
 		liste.clear();
+	}
+	
+	public ArrayList<Visite> voirVisitesEnBD() throws ClassNotFoundException, SQLException, IOException {
+		return (ArrayList<Visite>) new DaoVisiteMySql().findByNameMedecin(user.getNom());
 	}
 	}
 
