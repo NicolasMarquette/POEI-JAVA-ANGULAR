@@ -21,6 +21,7 @@ public class ListVisiteSalle1 implements ListVisite <LinkedList<Visite>> {
 		visite = new Visite(id_patient, formattedDateTime, medecin, id_salle, TARIF_CONSULTATION_GENENERALE);
 		//visite.setTarif(TARIF_CONSULTATION_GENENERALE);
 		visites.add(visite);
+		
 	}
 
 	@Override

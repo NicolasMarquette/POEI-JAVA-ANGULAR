@@ -5,14 +5,20 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 import controller.Controller;
+import db.ConnectionManager;
+import model.Hopital;
 import model.Patient;
 import model.SalleConsultation;
+import model.Visite;
 
 public class MenuPrincipal implements MenuView {
 
 	private Controller controller;
 	private Scanner clavierint = new Scanner(System.in);
 	private Scanner clavierString = new Scanner(System.in);
+	private AffichagePatient affPat = new AffichagePatient();
+	private AffichageVisite affVis = new AffichageVisite();
+	
 
 	public MenuPrincipal() {
 
@@ -35,6 +41,9 @@ public class MenuPrincipal implements MenuView {
 			break;
 		case 2:
 			System.out.println("Au revoir!");
+			for(SalleConsultation sc : Hopital.getHopital().getSalles())
+				controller.saveVisitesBD(sc.getId_salle());
+			ConnectionManager.getInstance().closeConn();
 			System.exit(0);
 			break;
 		default:
@@ -96,11 +105,16 @@ public class MenuPrincipal implements MenuView {
 			
 			break;
 		case 2:
-			System.out.println(controller.getFile());
+			System.out.println("File d'attente :");
+			for(Patient p : controller.getFile())
+				System.out.println(affPat.afficherPatient(p));
+			System.out.println("--------------------------------------------");
 			afficherMenuSecretaire();
 			break;
 		case 3:
-			System.out.println(controller.getProchainPatient());
+			System.out.println("Prochain patient dans la file d'attente : ");
+			System.out.println(affPat.afficherPatient(controller.getProchainPatient()));
+			System.out.println();
 			afficherMenuSecretaire();
 			break;
 		case 4:
@@ -117,7 +131,9 @@ public class MenuPrincipal implements MenuView {
 		case 5:
 			System.out.println("Veuillez entrer l'ID du patient ");
 			int idlist = clavierint.nextInt();
-			System.out.println(controller.voirVisitePatBD(idlist));
+			for(Visite v : controller.voirVisitePatBD(idlist))
+				System.out.println(affVis.afficherVisite(v));
+			System.out.println("--------------------------------------------");
 			afficherMenuSecretaire();
 			break;
 		case 6:
@@ -138,7 +154,6 @@ public class MenuPrincipal implements MenuView {
 		String adrPatient = "";
 		String telPatient = "";
 		Patient patient = controller.findByIdPat(idPatient);
-		System.out.println(patient);
 		if (patient != null) {
 			controller.addPatient(patient);// il ira chercher la requette SQL à partir de DAO
 			controller.ecrireRapport(idPatient);
@@ -194,7 +209,9 @@ public class MenuPrincipal implements MenuView {
 			// System.out.println(controller.getProchainPatient());
 			if (controller.getProchainPatient() != null) {
 				controller.medProchainPatient(salle.getId_salle());
-				System.out.println(salle.getPatient());
+				System.out.println("Patient qui entre dans la salle " + salle.getId_salle()+ " de consultation : ");
+				System.out.println(affPat.afficherPatient(salle.getPatient()));
+				System.out.println();
 				controller.addVisite(salle.getPatient().getId(), salle);
 				
 			} else {
@@ -203,12 +220,16 @@ public class MenuPrincipal implements MenuView {
 			afficherMenuMedecin();
 			break;
 		case 2:
-			System.out.println(controller.getFile());
+			System.out.println("File d'attente :");
+			for(Patient p : controller.getFile())
+				System.out.println(affPat.afficherPatient(p));
+			System.out.println("--------------------------------------------");
 			afficherMenuMedecin();
 			break;
 		case 3:
 			System.out.println("Voici la liste des visites du jour (avant sauvegarde en BD) : ");
-			System.out.println(controller.getListVisites(salle.getId_salle()));
+			for(Visite v : controller.getListVisites(salle.getId_salle()))
+				System.out.println(affVis.afficherVisite(v));
 			afficherMenuMedecin();
 			break;
 		case 4:
@@ -217,7 +238,9 @@ public class MenuPrincipal implements MenuView {
 			afficherMenuMedecin();
 			break;
 		case 5:
-			System.out.println(controller.voirVisitesEnBD());
+			for(Visite v : controller.voirVisitesEnBD())
+				System.out.println(affVis.afficherVisite(v));
+			System.out.println("--------------------------------------------");
 			afficherMenuMedecin();
 			break;
 		case 6:

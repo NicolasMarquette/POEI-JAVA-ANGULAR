@@ -76,8 +76,10 @@ public class Controller {
 		return listPat;
 	}
 
-	public void addVisite(int idPatient, SalleConsultation salle) {
+	public void addVisite(int idPatient, SalleConsultation salle) throws ClassNotFoundException, SQLException, IOException {
 		salle.addVisite(idPatient);
+		if(salle.getListVisite().size()==10)
+			saveVisitesBD(salle.getId_salle());
 	}
 
 	public SalleConsultation getSalle(int salle) {
