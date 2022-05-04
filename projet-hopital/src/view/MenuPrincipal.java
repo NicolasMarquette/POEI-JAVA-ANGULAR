@@ -5,7 +5,8 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 import controller.Controller;
-import dao.DaoPatientMySql;
+import dao.DaoAuthentificationMySql;
+import model.Authentification;
 import model.Patient;
 
 public class MenuPrincipal implements MenuView {
@@ -13,6 +14,7 @@ public class MenuPrincipal implements MenuView {
 	private Controller controller;
 	private Scanner clavierint = new Scanner(System.in);
 	private Scanner clavierString = new Scanner(System.in);
+	private Authentification user = new Authentification();
 
 	public MenuPrincipal() {
 
@@ -53,9 +55,12 @@ public class MenuPrincipal implements MenuView {
 		String username = clavierString.nextLine();
 		System.out.println("Entrez votre mot de passe : ");
 		String mdp = clavierString.nextLine();
-		if (!username.isEmpty() && !mdp.isEmpty()) {
-			if (controller.verifLogin(username, mdp))
-				switch (controller.getMetier()) {
+		
+		if (!username.isEmpty() && !mdp.isEmpty()) {			
+			if (controller.verifLogin(username, mdp)) {
+				controller.setUser(username);
+				user = controller.getUser();
+				switch (user.getMetier()) {
 				case 0:
 					afficherMenuSecretaire();
 					break;
@@ -66,7 +71,7 @@ public class MenuPrincipal implements MenuView {
 					System.out.println("Votre saisie est incorrecte.");
 					afficherMenuAuthentification();
 				}
-
+			}
 			else {
 				System.out.println("Les identifiants sont incorrects!\n");
 				afficherMenuPrincipal();
@@ -81,8 +86,8 @@ public class MenuPrincipal implements MenuView {
 	@Override
 	public void afficherMenuSecretaire() throws ClassNotFoundException, SQLException, IOException {
 
-		System.out.println("Bonjour " // Afficher le nom de la secretaire : getSecretaire
-		);
+		System.out.println("Bonjour " + user.getNom());
+		System.out.println(controller.getUser());
 		System.out.println("Veuillez choisir parmi les options suivantes :\n"
 				+ "1. Ajouter un patient à la file d'attente\n" + "2. Afficher la file d'attente \n"
 				+ "3. Afficher le prochain patient de la file \n" + "4. Menu principal");
