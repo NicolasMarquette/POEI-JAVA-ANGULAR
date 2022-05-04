@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -45,8 +46,8 @@ public class SalleConsultation {
 		this.medecin = medecin;
 	}
 
-	public ListVisite getListVisite() {
-		return listVisite;
+	public LinkedList<Visite> getListVisite() {
+		return (LinkedList<Visite>) listVisite.getVisites();
 	}
 	
 		

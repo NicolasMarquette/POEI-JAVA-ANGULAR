@@ -52,6 +52,7 @@ public class Hopital {
 	
 	public void update(int arg) {
 		salles.get(arg-1).setPatient(fileAttente.pop());
+		
 	}
 
 }
