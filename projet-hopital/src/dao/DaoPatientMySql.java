@@ -57,11 +57,24 @@ public class DaoPatientMySql implements DaoPatient {
 		ps.setString(5, obj.getAdresse());
 		ps.setString(6, obj.getTelephone());
 		ps.executeUpdate();
+		
+		ps.close();
 	}
 
 	@Override
-	public void update(Patient obj) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
+	public void update(Patient obj) throws ClassNotFoundException, SQLException, IOException {
+
+		Connection conn = ConnectionManager.getInstance().getConn();
+
+		String sql = "update patients set adresse = ?, telephone = ? where id = ?";
+
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setString(1, obj.getAdresse());
+		ps.setString(2, obj.getTelephone());
+		ps.setInt(3, obj.getId());
+		ps.executeUpdate();
+		
+		ps.close();
 		
 	}
 
