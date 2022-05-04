@@ -2,6 +2,8 @@ package controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
@@ -11,6 +13,7 @@ import dao.DaoVisiteMySql;
 import model.Authentification;
 import model.Hopital;
 import model.Patient;
+import model.RapportFileAttente;
 import model.SalleConsultation;
 import model.VerificationAuthentification;
 import model.Visite;
@@ -107,6 +110,30 @@ public class Controller {
 	
 	public ArrayList<Visite> voirVisitesEnBD() throws ClassNotFoundException, SQLException, IOException {
 		return (ArrayList<Visite>) new DaoVisiteMySql().findByNameMedecin(user.getNom());
+	}
+
+	public void miseAJourPatient(int id, String adr, String tel) throws ClassNotFoundException, SQLException, IOException {
+		Patient patient = findByIdPat(id);
+		if(adr.equals(""))
+			adr=null;
+		if(tel.equals(""))
+			tel=null;
+		patient.setAdresse(adr);
+		patient.setTelephone(tel);
+		new DaoPatientMySql().update(patient);
+		
+	}
+
+	public ArrayList<Visite> voirVisitePatBD(int id) throws ClassNotFoundException, SQLException, IOException {
+		return (ArrayList<Visite>) new DaoVisiteMySql().findByIdPatient(id);
+	}
+
+	public void ecrireRapport(int idPatient) throws IOException {
+		LocalDateTime dateTime = LocalDateTime.now();
+		DateTimeFormatter formatDateTime = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		String formattedDateTime = dateTime.format(formatDateTime);
+		RapportFileAttente rapport = new RapportFileAttente();
+		rapport.ecrireRapport(idPatient, formattedDateTime);
 	}
 	}
 
