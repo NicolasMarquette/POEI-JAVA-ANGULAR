@@ -36,6 +36,10 @@ public class Controller {
 		addObserver();
 		
 	}
+	
+	public void run() throws ClassNotFoundException, SQLException, IOException {
+		view.afficherMenuPrincipal();
+	}
 
 	public boolean verifLogin(String username, String mdp) throws ClassNotFoundException, SQLException, IOException {
 		String id = username + "/" + mdp;
