@@ -84,13 +84,16 @@ public class MenuPrincipal implements MenuView {
 		System.out.println("Bonjour " + controller.getUser().getNom());
 		System.out.println("Veuillez choisir parmi les options suivantes :\n"
 				+ "1. Ajouter un patient Ã  la file d'attente\n" + "2. Afficher la file d'attente \n"
-				+ "3. Afficher le prochain patient de la file \n" + "4. Menu principal");
+				+ "3. Afficher le prochain patient de la file \n" + "4. Ajouter une adresse/tel à un patient\n"
+						+ "5. Afficher la liste des visites en base d'un patient selon son ID\n"
+						+ "6. Menu principal");
 		int choixSec = clavierint.nextInt();
 		switch (choixSec) {
 		case 1:
 			System.out.println("Saisir l'ID du patient :");
 			int idPatient = clavierint.nextInt();
 			menuPatientFile(idPatient);
+			
 			break;
 		case 2:
 			System.out.println(controller.getFile());
@@ -101,6 +104,23 @@ public class MenuPrincipal implements MenuView {
 			afficherMenuSecretaire();
 			break;
 		case 4:
+			System.out.println("Veuillez entrer l'ID du patient à modifier");
+			int id = clavierint.nextInt();
+			System.out.println("Veuillez entrer l'adresse");
+			String adr = clavierString.nextLine();
+			System.out.println("Veuillez entrer le téléphone");
+			String tel = clavierString.nextLine();
+			controller.miseAJourPatient(id, adr, tel);
+			System.out.println("Mise à jour effectuée !");
+			afficherMenuSecretaire();
+			break;
+		case 5:
+			System.out.println("Veuillez entrer l'ID du patient ");
+			int idlist = clavierint.nextInt();
+			System.out.println(controller.voirVisitePatBD(idlist));
+			afficherMenuSecretaire();
+			break;
+		case 6:
 			afficherMenuPrincipal();
 			break;
 		default:
@@ -150,6 +170,8 @@ public class MenuPrincipal implements MenuView {
 			afficherMenuSecretaire();
 
 		}
+		controller.ecrireRapport(idPatient);
+		
 	}
 
 	@Override
