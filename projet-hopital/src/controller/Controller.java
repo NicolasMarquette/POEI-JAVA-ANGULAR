@@ -8,6 +8,7 @@ import java.util.Scanner;
 import dao.DaoAuthentificationMySql;
 import dao.DaoPatientMySql;
 import dao.DaoVisiteMySql;
+import model.Authentification;
 import model.Hopital;
 import model.Patient;
 import model.SalleConsultation;
@@ -26,9 +27,10 @@ public class Controller {
 	private LinkedList<Patient> listPat;
 	private LinkedList<Visite> listVis;
 	private DaoPatientMySql daoPatient;
-	private DaoAuthentificationMySql daoAuthent;
 	private DaoVisiteMySql daoVisite;
+	private Authentification user;
 
+	
 	public Controller(MenuView view) {
 		this.view = view;
 		view.setController(this);
@@ -41,11 +43,15 @@ public class Controller {
 		verifLogin = verif.verify(id);
 		return verifLogin;
 	}
+	
+	
+	public Authentification getUser() {
+		return user;
+	}
 
-	public int getMetier() {
-		metier = 0;
-		return metier;
-		// Implémenter le get et setMetier à partir de la DB
+	public void setUser(String id) throws ClassNotFoundException, SQLException, IOException {		
+		user = new DaoAuthentificationMySql().findById(id);		
+		
 	}
 
 	public void addPatient(Patient patient) { // pas oublier le paramètre Patient
@@ -57,19 +63,21 @@ public class Controller {
 		return patient;
 	}
 
+	public Patient findByIdPat(int idPatient) throws ClassNotFoundException, SQLException, IOException {
+		Patient patient = daoPatient.findById(idPatient);
+		return patient;
+	}
+	
 	public LinkedList<Patient> getFile() {
 		listPat = hopital.getFileAttente();
 		return listPat;
 	}
 
-	public void addVisite(Visite visite) {
-		sallecons.addVisite(visite);
+	public void addVisite(int idPatient, int tarif) {
+		sallecons.addVisite(idPatient, tarif);
 	}
 
-	public Patient findByIdPat(int idPatient) throws ClassNotFoundException, SQLException, IOException {
-		Patient patient = daoPatient.findById(idPatient);
-		return patient;
-	}
+
 	
 	
 }
