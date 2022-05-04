@@ -14,7 +14,6 @@ public class Visite {
 	}
 
 	public Visite(int id, int idPatient, String date, String medecin, int num_salle, int tarif) {
-		this.id = id;
 		this.idPatient = idPatient;
 		this.date = date;
 		this.medecin = medecin;
@@ -38,13 +37,6 @@ public class Visite {
 		this.num_salle = num_salle;
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	public int getIdPatient() {
 		return idPatient;
@@ -94,8 +86,17 @@ public class Visite {
 
 	@Override
 	public String toString() {
-		return "Visite [id=" + id + ", idPatient=" + idPatient + ", date=" + date + ", medecin=" + medecin
+		return "Visite [idPatient=" + idPatient + ", date=" + date + ", medecin=" + medecin
 				+ ", num_salle=" + num_salle + ", tarif=" + tarif + "]";
 	}
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	
 }

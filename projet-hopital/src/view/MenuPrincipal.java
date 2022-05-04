@@ -154,20 +154,27 @@ public class MenuPrincipal implements MenuView {
 
 	@Override
 	public void afficherMenuMedecin() throws ClassNotFoundException, SQLException, IOException {
-
+		
 		System.out.println("Bonjour " + controller.getUser().getNom() + " dans la salle de consultation n "
-				+ controller.getUser().getSalle() );
+				+ controller.getUser().getSalle());
 		SalleConsultation salle = controller.getSalle(controller.getUser().getSalle());
+		salle.setMedecin(controller.getUser().getNom());
 		System.out.println("Veuillez choisir parmi les options suivantes : \n"
 				+ "1. Accueillir le prochain patient (rendre la salle disponible)\n"
-				+ "2. Afficher la file d'attente \n" + "3. Sauvegarder en base les visites \n" + "4. Menu principal");
+				+ "2. Afficher la file d'attente \n" + "3. Afficher la liste des visites\n"
+				+ "4.Sauvegarder en base les visites \n" + "5. Menu principal");
 		int choixMed = clavierint.nextInt();
 		switch (choixMed) {
 		case 1:
-			//System.out.println(controller.getProchainPatient());
-			controller.medProchainPatient(salle.getId_salle());
-			System.out.println(salle.getPatient());
-			controller.addVisite(controller.getProchainPatient().getId(), salle);
+			// System.out.println(controller.getProchainPatient());
+			if (controller.getProchainPatient() != null) {
+				controller.medProchainPatient(salle.getId_salle());
+				System.out.println(salle.getPatient());
+				controller.addVisite(salle.getPatient().getId(), salle);
+				
+			} else {
+				System.out.println("Il n'y a plus de patients dans la salle d'attente");
+			}
 			afficherMenuMedecin();
 			break;
 		case 2:
@@ -175,12 +182,19 @@ public class MenuPrincipal implements MenuView {
 			afficherMenuMedecin();
 			break;
 		case 3:
-			System.out.println("Liste des visites sauvegardées en BD.");
+			System.out.println("Voici la liste des visites du jour (avant sauvegarde en BD) : ");
+			System.out.println(controller.getListVisites(salle.getId_salle()));
 			afficherMenuMedecin();
 			break;
 		case 4:
+			controller.saveVisitesBD(salle.getId_salle());
+			System.out.println("Liste des visites sauvegardées en BD.");
+			afficherMenuMedecin();
+			break;
+		case 5:
 			afficherMenuPrincipal();
 			break;
+
 		default:
 			System.out.println("Saisie incorrecte");
 			afficherMenuMedecin();

@@ -3,7 +3,6 @@ package controller;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.LinkedList;
-import java.util.Scanner;
 
 import dao.DaoAuthentificationMySql;
 import dao.DaoPatientMySql;
@@ -22,7 +21,6 @@ public class Controller {
 	private Hopital hopital;
 	private VerificationAuthentification verif;
 	private LinkedList<Patient> listPat;
-	private LinkedList<Visite> listVis;
 	private Authentification user;
 
 	
@@ -83,6 +81,7 @@ public class Controller {
 	}
 
 	public void medProchainPatient(int salle) {
+		if(hopital.getFileAttente().size()>0)
 		hopital.getSalles().get(salle-1).notifyObservers();
 		
 	}
@@ -90,6 +89,19 @@ public class Controller {
 	public void addObserver() {
 		for(SalleConsultation s : hopital.getSalles())
 			s.addObserver(hopital);
+	}
+	
+	public LinkedList<Visite> getListVisites(int id) {
+		
+		LinkedList<Visite> liste = hopital.getSalles().get(id-1).getListVisite();
+		return liste;
+	}
+
+	public void saveVisitesBD(int id) throws ClassNotFoundException, SQLException, IOException {
+		LinkedList<Visite> liste = hopital.getSalles().get(id-1).getListVisite();
+		for(Visite v : liste)
+			new DaoVisiteMySql().create(v);
+		liste.clear();
 	}
 	}
 
