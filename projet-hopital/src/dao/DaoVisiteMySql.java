@@ -68,7 +68,7 @@ public class DaoVisiteMySql implements DaoVisite {
 		ps.setInt(1, id);
 		ResultSet rs = ps.executeQuery();
 
-		if (rs.next()) {
+		while (rs.next()) {
 			Visite visite = new Visite();
 			visite.setId(rs.getInt("id"));
 			visite.setIdPatient(rs.getInt("idpatient"));
@@ -98,7 +98,7 @@ public class DaoVisiteMySql implements DaoVisite {
 		ps.setString(1, name);
 		ResultSet rs = ps.executeQuery();
 
-		if (rs.next()) {
+		while (rs.next()) {
 			Visite visite = new Visite();
 			visite.setId(rs.getInt("id"));
 			visite.setIdPatient(rs.getInt("idpatient"));
