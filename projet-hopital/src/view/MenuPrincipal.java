@@ -5,16 +5,14 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 import controller.Controller;
-import dao.DaoAuthentificationMySql;
-import model.Authentification;
 import model.Patient;
+import model.SalleConsultation;
 
 public class MenuPrincipal implements MenuView {
 
 	private Controller controller;
 	private Scanner clavierint = new Scanner(System.in);
 	private Scanner clavierString = new Scanner(System.in);
-	private Authentification user = new Authentification();
 
 	public MenuPrincipal() {
 
@@ -55,12 +53,10 @@ public class MenuPrincipal implements MenuView {
 		String username = clavierString.nextLine();
 		System.out.println("Entrez votre mot de passe : ");
 		String mdp = clavierString.nextLine();
-		
-		if (!username.isEmpty() && !mdp.isEmpty()) {			
+		controller.setUser(username);
+		if (!username.isEmpty() && !mdp.isEmpty()) {
 			if (controller.verifLogin(username, mdp)) {
-				controller.setUser(username);
-				user = controller.getUser();
-				switch (user.getMetier()) {
+				switch (controller.getUser().getMetier()) {
 				case 0:
 					afficherMenuSecretaire();
 					break;
@@ -71,8 +67,7 @@ public class MenuPrincipal implements MenuView {
 					System.out.println("Votre saisie est incorrecte.");
 					afficherMenuAuthentification();
 				}
-			}
-			else {
+			} else {
 				System.out.println("Les identifiants sont incorrects!\n");
 				afficherMenuPrincipal();
 			}
@@ -86,8 +81,7 @@ public class MenuPrincipal implements MenuView {
 	@Override
 	public void afficherMenuSecretaire() throws ClassNotFoundException, SQLException, IOException {
 
-		System.out.println("Bonjour " + user.getNom());
-		System.out.println(controller.getUser());
+		System.out.println("Bonjour " + controller.getUser().getNom());
 		System.out.println("Veuillez choisir parmi les options suivantes :\n"
 				+ "1. Ajouter un patient Ã  la file d'attente\n" + "2. Afficher la file d'attente \n"
 				+ "3. Afficher le prochain patient de la file \n" + "4. Menu principal");
@@ -123,9 +117,9 @@ public class MenuPrincipal implements MenuView {
 		String datePatient = "";
 		String adrPatient = "";
 		String telPatient = "";
-		if (idPatient == 1) {					
-			//Patient patient = new Patient(idPatient, nomPatient, prenomPatient, datePatient, adrPatient, telPatient);
-			Patient patient = controller.findByIdPat(idPatient);			
+		Patient patient = controller.findByIdPat(idPatient);
+		System.out.println(patient);
+		if (patient != null) {
 			controller.addPatient(patient);// il ira chercher la requette SQL Ã  partir de DAO
 			System.out.println("Patient n" + idPatient + " ajouté à  la file");
 			afficherMenuSecretaire();
@@ -136,6 +130,7 @@ public class MenuPrincipal implements MenuView {
 			prenomPatient = clavierString.nextLine();
 			System.out.println("Saisir la date de naissance : (AAAA-MM-JJ)");
 			datePatient = clavierString.nextLine();
+			Patient patient1 = new Patient(idPatient, nomPatient, prenomPatient, datePatient);
 			System.out.println("Voulez vous saisir l'adresse et le téléphone? O/N");
 			String choixPatient1 = clavierString.nextLine();
 			switch (choixPatient1) {
@@ -145,35 +140,34 @@ public class MenuPrincipal implements MenuView {
 				adrPatient = clavierString.nextLine();
 				System.out.println("Saisir le téléphone");
 				telPatient = clavierString.nextLine();
-				System.out.println("Patient n" + idPatient + " ajouté.");
-				afficherMenuSecretaire();
+				patient1.setAdresse(adrPatient);
+				patient1.setTelephone(telPatient);
 				break;
-			case "N":
-			case "n":
-				Patient patient1 = new Patient(idPatient, nomPatient, prenomPatient, datePatient, adrPatient,
-						telPatient);
-				controller.addPatient(patient1);
-				System.out.println("Patient n" + idPatient + " ajouté.");
-				afficherMenuSecretaire();
-				break;
-
 			}
+			controller.createPatient(patient1);
+			controller.addPatient(controller.findByIdPat(idPatient));
+			System.out.println("Patient n" + idPatient + " ajouté.");
+			afficherMenuSecretaire();
+
 		}
 	}
 
 	@Override
 	public void afficherMenuMedecin() throws ClassNotFoundException, SQLException, IOException {
 
-		System.out.println("Bonjour "); // Ajouter le nom du medecin et sa salle
+		System.out.println("Bonjour " + controller.getUser().getNom() + " dans la salle de consultation n "
+				+ controller.getUser().getSalle() );
+		SalleConsultation salle = controller.getSalle(controller.getUser().getSalle());
 		System.out.println("Veuillez choisir parmi les options suivantes : \n"
 				+ "1. Accueillir le prochain patient (rendre la salle disponible)\n"
 				+ "2. Afficher la file d'attente \n" + "3. Sauvegarder en base les visites \n" + "4. Menu principal");
 		int choixMed = clavierint.nextInt();
 		switch (choixMed) {
 		case 1:
-			System.out.println(controller.getProchainPatient());
-			//Visite visite = 
-			//controller.addVisite(visite);
+			//System.out.println(controller.getProchainPatient());
+			controller.medProchainPatient(salle.getId_salle());
+			System.out.println(salle.getPatient());
+			controller.addVisite(controller.getProchainPatient().getId(), salle);
 			afficherMenuMedecin();
 			break;
 		case 2:
@@ -189,8 +183,8 @@ public class MenuPrincipal implements MenuView {
 			break;
 		default:
 			System.out.println("Saisie incorrecte");
-			afficherMenuMedecin();	
-		
+			afficherMenuMedecin();
+
 		}
 	}
 }
