@@ -19,15 +19,10 @@ import view.MenuView;
 public class Controller {
 	MenuView view;
 	private boolean verifLogin;
-	private int metier;
-	private Scanner clavierString = new Scanner(System.in);
 	private Hopital hopital;
-	private SalleConsultation sallecons;
 	private VerificationAuthentification verif;
 	private LinkedList<Patient> listPat;
 	private LinkedList<Visite> listVis;
-	private DaoPatientMySql daoPatient;
-	private DaoVisiteMySql daoVisite;
 	private Authentification user;
 
 	
@@ -36,6 +31,8 @@ public class Controller {
 		view.setController(this);
 		hopital = Hopital.getHopital();
 		verif = new VerificationAuthentification();
+		addObserver();
+		
 	}
 
 	public boolean verifLogin(String username, String mdp) throws ClassNotFoundException, SQLException, IOException {
@@ -54,7 +51,7 @@ public class Controller {
 		
 	}
 
-	public void addPatient(Patient patient) { // pas oublier le paramètre Patient
+	public void addPatient(Patient patient) { 
 		hopital.addPatient(patient);
 	}
 
@@ -64,8 +61,12 @@ public class Controller {
 	}
 
 	public Patient findByIdPat(int idPatient) throws ClassNotFoundException, SQLException, IOException {
-		Patient patient = daoPatient.findById(idPatient);
+		Patient patient = new DaoPatientMySql().findById(idPatient);
 		return patient;
+	}
+	
+	public void createPatient(Patient patient) throws ClassNotFoundException, SQLException, IOException {
+		new DaoPatientMySql().create(patient);
 	}
 	
 	public LinkedList<Patient> getFile() {
@@ -73,11 +74,22 @@ public class Controller {
 		return listPat;
 	}
 
-	public void addVisite(int idPatient, int tarif) {
-		sallecons.addVisite(idPatient, tarif);
+	public void addVisite(int idPatient, SalleConsultation salle) {
+		salle.addVisite(idPatient);
 	}
 
+	public SalleConsultation getSalle(int salle) {
+		return hopital.getSalles().get(salle-1);
+	}
 
+	public void medProchainPatient(int salle) {
+		hopital.getSalles().get(salle-1).notifyObservers();
+		
+	}
 	
-	
-}
+	public void addObserver() {
+		for(SalleConsultation s : hopital.getSalles())
+			s.addObserver(hopital);
+	}
+	}
+
