@@ -219,7 +219,6 @@ public class MenuPrincipal implements MenuView {
 		switch (choixMed) {
 		case 1:
 			System.out.println("--------------------------------------------");
-			// System.out.println(controller.getProchainPatient());
 			if (controller.getProchainPatient() != null) {
 				controller.medProchainPatient(salle.getId_salle());
 				System.out.println("Patient qui entre dans la salle de consultation " + salle.getId_salle() + " : ");
