@@ -11,8 +11,8 @@ public class Patient {
 	private String date_naissance;
 
 	// cont avec tout
-	public Patient(int id, String nom, String prenom, String date_naissance, int age, String adresse, String telephone
-			) {
+	public Patient(int id, String nom, String prenom, String date_naissance, int age, String adresse,
+			String telephone) {
 		this.id = id;
 		this.nom = nom;
 		this.prenom = prenom;
@@ -23,7 +23,7 @@ public class Patient {
 	}
 
 	// sans age
-	public Patient(int id, String nom, String prenom,String date_naissance, String adresse, String telephone) {
+	public Patient(int id, String nom, String prenom, String date_naissance, String adresse, String telephone) {
 		this.id = id;
 		this.nom = nom;
 		this.prenom = prenom;
@@ -33,7 +33,7 @@ public class Patient {
 	}
 
 	public Patient(int id, String nom, String prenom, String date_naissance) {
-		this.id=id;
+		this.id = id;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.date_naissance = date_naissance;
