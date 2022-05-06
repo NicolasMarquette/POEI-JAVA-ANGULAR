@@ -34,7 +34,6 @@ public class Controller {
 		hopital = Hopital.getHopital();
 		verif = new VerificationAuthentification();
 		addObserver();
-		
 	}
 	
 	public void run() throws ClassNotFoundException, SQLException, IOException {
@@ -141,5 +140,19 @@ public class Controller {
 		RapportFileAttente rapport = new RapportFileAttente();
 		rapport.ecrireRapport(idPatient, formattedDateTime);
 	}
+	
+	public boolean isPatientDansListe(int id) {
+		
+		boolean verif = false;
+		
+		if (getFile() != null) {
+			for (Patient p : getFile()) {
+				if (p.getId() == id ) {
+					verif = true;
+				}
+			}
+		}
+		return verif;
 	}
+}
 

@@ -17,4 +17,6 @@ public interface MenuView {
 	
 	public void afficherMenuMedecin() throws ClassNotFoundException, SQLException, IOException;
 	
+	public void afficherMenuOrdonnance() throws ClassNotFoundException, SQLException, IOException;
+	
 }

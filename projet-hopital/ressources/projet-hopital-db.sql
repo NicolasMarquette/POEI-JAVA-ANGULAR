@@ -89,6 +89,32 @@ DELIMITER ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
+-- Table structure for table `medicaments`
+--
+
+DROP TABLE IF EXISTS `medicaments`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `medicaments` (
+  `idMedicament` int(11) NOT NULL AUTO_INCREMENT,
+  `nomMedicament` varchar(100) NOT NULL,
+  `prix` int(11) NOT NULL,
+  `quantite` int(11) NOT NULL,
+  PRIMARY KEY (`idMedicament`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `medicaments`
+--
+
+LOCK TABLES `medicaments` WRITE;
+/*!40000 ALTER TABLE `medicaments` DISABLE KEYS */;
+INSERT INTO `medicaments` VALUES (1,'doliprane 500mg',3,20),(2,'doliprane 1000mg',3,50),(3,'aspirine 500mg',4,10),(4,'aspirine 1000mg',4,15),(5,'spasfon 160mg',2,20);
+/*!40000 ALTER TABLE `medicaments` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `patients`
 --
 
@@ -151,7 +177,7 @@ CREATE TABLE `visites` (
   `tarif` int(11) NOT NULL,
   `ordonnance` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -196,4 +222,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-03 18:14:57
+-- Dump completed on 2022-05-06 16:31:41
