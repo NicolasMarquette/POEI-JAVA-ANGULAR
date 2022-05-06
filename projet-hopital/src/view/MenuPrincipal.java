@@ -32,7 +32,7 @@ public class MenuPrincipal implements MenuView {
 
 		System.out.println("--------------------------------------------");
 		System.out.println("|           Bienvenue Ã l'hopital.          |");
-		System.out.println("|                version 1.0                |");
+		System.out.println("|                version 2.0                |");
 		System.out.println("--------------------------------------------");
 		System.out.println(
 				"\nVeuillez choisir parmi les options suivantes : \n\n" + "1. Menu Login\n" + "2. Quitter l'hopital");
@@ -110,21 +110,21 @@ public class MenuPrincipal implements MenuView {
 			System.out.println("--------------------------------------------");
 			System.out.println("Saisir l'ID du patient :");
 			int idPatient = clavierint.nextInt();
-			menuPatientFile(idPatient);
-
 			break;
 		case 2:
 			System.out.println("--------------------------------------------");
 			System.out.println("File d'attente :");
 			for (Patient p : controller.getFile())
 				System.out.println(affPat.afficherPatient(p));
-			afficherMenuSecretaire();
 			break;
 		case 3:
 			System.out.println("--------------------------------------------");
 			System.out.println("Prochain patient dans la file d'attente : ");
-			System.out.println(affPat.afficherPatient(controller.getProchainPatient()));
-			afficherMenuSecretaire();
+			if (controller.getProchainPatient() != null) {
+				System.out.println(affPat.afficherPatient(controller.getProchainPatient()));
+			} else {
+				System.out.println("Il n'y a pas de patient en file d'attente");
+			}
 			break;
 		case 4:
 			System.out.println("--------------------------------------------");
@@ -136,7 +136,6 @@ public class MenuPrincipal implements MenuView {
 			String tel = clavierString.nextLine();
 			controller.miseAJourPatient(id, adr, tel);
 			System.out.println("Mise à jour effectuée !");
-			afficherMenuSecretaire();
 			break;
 		case 5:
 			System.out.println("--------------------------------------------");
@@ -144,16 +143,14 @@ public class MenuPrincipal implements MenuView {
 			int idlist = clavierint.nextInt();
 			for (Visite v : controller.voirVisitePatBD(idlist))
 				System.out.println(affVis.afficherVisite(v));
-			afficherMenuSecretaire();
 			break;
 		case 6:
 			afficherMenuPrincipal();
 			break;
 		default:
 			System.out.println("Saisie incorrecte");
-			afficherMenuSecretaire();
 		}
-
+		afficherMenuSecretaire();
 	}
 
 	public void menuPatientFile(int idPatient) throws ClassNotFoundException, SQLException, IOException {
@@ -166,10 +163,13 @@ public class MenuPrincipal implements MenuView {
 		Patient patient = controller.findByIdPat(idPatient);
 		if (patient != null) {
 			System.out.println("--------------------------------------------");
-			controller.addPatient(patient);
-			controller.ecrireRapport(idPatient);
-			System.out.println("Patient id n°" + idPatient + " ajouté à la file");
-			afficherMenuSecretaire();
+			if (!controller.isPatientDansListe(patient.getId())) {
+				controller.addPatient(patient);
+				controller.ecrireRapport(idPatient);
+				System.out.println("Patient id n°" + idPatient + " ajouté à la file");
+			} else {
+				System.out.println("Ce patient n°" + idPatient + " est déjà dans la file d'attente");
+			}
 		} else {
 			System.out.println("--------------------------------------------");
 			System.out.println("Saisir le nom : ");
@@ -198,10 +198,8 @@ public class MenuPrincipal implements MenuView {
 			controller.addPatient(controller.findByIdPat(idPatient));
 			controller.ecrireRapport(idPatient);
 			System.out.println("Patient id n°" + idPatient + " ajouté à la file");
-			afficherMenuSecretaire();
-
 		}
-
+		afficherMenuSecretaire();
 	}
 
 	@Override
@@ -272,4 +270,24 @@ public class MenuPrincipal implements MenuView {
 
 		}
 	}
+
+	@Override
+	public void afficherMenuOrdonnance() throws ClassNotFoundException, SQLException, IOException {
+		
+		System.out.println("--------------------------------------------");
+		System.out.println("Menu ordonnance");
+		System.out.println("Liste des médicaments disponibles : ");
+		System.out.println(); // controller pour récupérer la liste des médicaments depuis la liste
+		System.out.println("9. terminer l'ordonnance");
+		int choixMedicament = 0;
+		do {
+			choixMedicament = clavierint.nextInt();
+			// controller pour ajouter le médicament dans l'ordonnance
+			System.out.println("médicament ajouté à la l'ordonnance"); // récupérer le nom du médicament
+		} while (choixMedicament != 9);
+		afficherMenuMedecin();
+	}
+	
+	
+	
 }

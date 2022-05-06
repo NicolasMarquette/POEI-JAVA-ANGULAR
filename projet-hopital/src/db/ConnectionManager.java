@@ -58,7 +58,7 @@ public class ConnectionManager {
 	private Properties loadPropertiesFile() throws IOException {
 
 		Properties prop = new Properties();
-		InputStream in = new FileInputStream("jdbc.properties");
+		InputStream in = new FileInputStream("ressources/jdbc.properties");
 		prop.load(in);
 		in.close();
 
