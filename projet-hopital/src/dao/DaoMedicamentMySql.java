@@ -25,14 +25,14 @@ public class DaoMedicamentMySql implements DaoMedicament {
 		PreparedStatement ps = conn.prepareStatement(sql);
 		ResultSet rs = ps.executeQuery();
 
-//		while (rs.next()) {
-//			Medicament medicament = new Medicament();
-//			medicament.setIdMedicament(rs.getInt("idMedicament"));
-//			medicament.setNomMedicament(rs.getString("nomMedicament"));
-//			medicament.setPrix(rs.getInt("prix"));
-//			medicament.setQuantite(rs.getInt("quantite"));
-//			listeMedicaments.add(medicament);
-//		}
+		while (rs.next()) {
+			Medicament medicament = new Medicament();
+			medicament.setIdMedicament(rs.getInt("idMedicament"));
+			medicament.setNomMedicament(rs.getString("nomMedicament"));
+			medicament.setPrix(rs.getInt("prix"));
+			medicament.setQuantite(rs.getInt("quantite"));
+			listeMedicaments.add(medicament);
+		}
 
 		ps.close();
 		rs.close();
@@ -53,12 +53,12 @@ public class DaoMedicamentMySql implements DaoMedicament {
 		ps.setInt(1, id);
 		ResultSet rs = ps.executeQuery();
 		
-//		for (rs.next()) {
-//			medicament = new Medicament(rs.getInt("idMedicament"), rs.getString("nomMedicament"), rs.getInt("prix"), rs.getInt("quantite"));
-//		}
-//		
-//		ps.close();
-//		rs.close();
+		for (rs.next()) {
+			medicament = new Medicament(rs.getInt("idMedicament"), rs.getString("nomMedicament"), rs.getInt("prix"), rs.getInt("quantite"));
+		}
+		
+		ps.close();
+		rs.close();
 		
 		return medicament;
 	}
@@ -71,11 +71,11 @@ public class DaoMedicamentMySql implements DaoMedicament {
 		String sql = "INSERT INTO medicaments VALUES (?, ?, ?, ?)";
 		
 		PreparedStatement ps = conn.prepareStatement(sql);
-//		ps.setInt(1, obj.getIdMedicament());
-//		ps.setString(2, obj.getNomMedicament());
-//		ps.setInt(3, obj.getPrix());
-//		ps.setInt(4, obj.getQuantite());
-//		ps.executeUpdate();
+		ps.setInt(1, obj.getIdMedicament());
+		ps.setString(2, obj.getNomMedicament());
+		ps.setInt(3, obj.getPrix());
+		ps.setInt(4, obj.getQuantite());
+		ps.executeUpdate();
 		
 		ps.close();
 	}
@@ -88,11 +88,11 @@ public class DaoMedicamentMySql implements DaoMedicament {
 		String sql = "UPDATE medicaments SET nomMedicament = ?, prix = ?, quantite = ? WHERE idMedicament = ?)";
 		
 		PreparedStatement ps = conn.prepareStatement(sql);
-//		ps.setString(1, obj.getNomMedicament());
-//		ps.setInt(2, obj.getPrix());
-//		ps.setInt(3, obj.getQuantite());
-//		ps.setInt(4, obj.getIdMedicament());
-//		ps.executeUpdate();
+		ps.setString(1, obj.getNomMedicament());
+		ps.setInt(2, obj.getPrix());
+		ps.setInt(3, obj.getQuantite());
+		ps.setInt(4, obj.getIdMedicament());
+		ps.executeUpdate();
 		
 		ps.close();
 	}
@@ -105,7 +105,7 @@ public class DaoMedicamentMySql implements DaoMedicament {
 		String sql = "DELETE FROM medicaments WHERE idMedicament = ?)";
 		
 		PreparedStatement ps = conn.prepareStatement(sql);
-//		ps.setInt(1, obj.getIdMedicament());
+		ps.setInt(1, obj.getIdMedicament());
 		ps.executeUpdate();
 		
 		ps.close();
@@ -125,14 +125,14 @@ public class DaoMedicamentMySql implements DaoMedicament {
 		ps.setString(1, name);
 		ResultSet rs = ps.executeQuery();
 		
-//		while (rs.next()) {
-//		Medicament medicament = new Medicament();
-//		medicament.setIdMedicament(rs.getInt("idMedicament"));
-//		medicament.setNomMedicament(rs.getString("nomMedicament"));
-//		medicament.setPrix(rs.getInt("prix"));
-//		medicament.setQuantite(rs.getInt("quantite"));
-//		listeMedicaments.add(medicament);
-//	}
+		while (rs.next()) {
+		Medicament medicament = new Medicament();
+		medicament.setIdMedicament(rs.getInt("idMedicament"));
+		medicament.setNomMedicament(rs.getString("nomMedicament"));
+		medicament.setPrix(rs.getInt("prix"));
+		medicament.setQuantite(rs.getInt("quantite"));
+		listeMedicaments.add(medicament);
+	}
 
 		ps.close();
 		rs.close();

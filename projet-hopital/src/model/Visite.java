@@ -74,6 +74,14 @@ public class Visite {
 		return tarif;
 	}
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	public void setTarif(int tarif) {
 		this.tarif = tarif;
 	}
@@ -90,13 +98,5 @@ public class Visite {
 				+ ", num_salle=" + num_salle + ", tarif=" + tarif + "]\n";
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	
+		
 }
