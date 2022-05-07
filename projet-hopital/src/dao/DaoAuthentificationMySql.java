@@ -114,4 +114,20 @@ public class DaoAuthentificationMySql implements DaoAuthentification {
 		ps.close();
 	}
 
+	@Override
+	public void updatePassword(Authentification obj) throws ClassNotFoundException, SQLException, IOException {
+
+		Connection conn = ConnectionManager.getInstance().getConn();
+
+		String sql = "UPDATE authentification SET password = ? WHERE login = ?";
+
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setString(1, obj.getPassword());
+		ps.setString(2, obj.getLogin());
+		ps.executeUpdate();
+
+		ps.close();
+	}
+
+
 }

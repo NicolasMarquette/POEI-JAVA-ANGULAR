@@ -37,7 +37,6 @@ public class Visite {
 		this.num_salle = num_salle;
 	}
 
-
 	public int getIdPatient() {
 		return idPatient;
 	}
@@ -81,7 +80,7 @@ public class Visite {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
 	public void setTarif(int tarif) {
 		this.tarif = tarif;
 	}
@@ -94,9 +93,8 @@ public class Visite {
 
 	@Override
 	public String toString() {
-		return "Visite [idPatient=" + idPatient + ", date=" + date + ", medecin=" + medecin
-				+ ", num_salle=" + num_salle + ", tarif=" + tarif + "]\n";
+		return "Visite [idPatient=" + idPatient + ", date=" + date + ", medecin=" + medecin + ", num_salle=" + num_salle
+				+ ", tarif=" + tarif + "]\n";
 	}
 
-		
 }

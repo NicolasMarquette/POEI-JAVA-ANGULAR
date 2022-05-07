@@ -1,30 +1,27 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.Observable;
-import java.util.Observer;
 
 public class SalleConsultation {
 
 	private int id_salle;
 	private String medecin;
-	private ListVisite listVisite;
+	private ListVisite<LinkedList<Visite>> listVisite;
 	private Hopital observer;
 	private Patient patient;
 
 	public SalleConsultation() {
-		
+
 	}
 
-	public SalleConsultation(int id_salle, ListVisite listVisite) {
+	public SalleConsultation(int id_salle, ListVisite<LinkedList<Visite>> listVisite) {
 		super();
 		this.id_salle = id_salle;
 		this.listVisite = listVisite;
-		
+
 	}
 
-	public SalleConsultation(int id_salle, String medecin, ListVisite listVisite) {
+	public SalleConsultation(int id_salle, String medecin, ListVisite<LinkedList<Visite>> listVisite) {
 		this.id_salle = id_salle;
 		this.medecin = medecin;
 		this.listVisite = listVisite;
@@ -49,8 +46,7 @@ public class SalleConsultation {
 	public LinkedList<Visite> getListVisite() {
 		return (LinkedList<Visite>) listVisite.getVisites();
 	}
-	
-		
+
 	public Patient getPatient() {
 		return patient;
 	}
@@ -63,14 +59,12 @@ public class SalleConsultation {
 		listVisite.setVisites(id_patient, medecin, id_salle);
 	}
 
-	
-	public synchronized void addObserver(Hopital h) {	
-		observer=h;
+	public synchronized void addObserver(Hopital h) {
+		observer = h;
 	}
-		
 
-	public void notifyObservers() {		
-			observer.update(id_salle);
+	public void notifyObservers() {
+		observer.update(id_salle);
 	}
 
 }

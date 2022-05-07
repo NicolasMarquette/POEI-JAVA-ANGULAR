@@ -10,14 +10,12 @@ public class Medicament {
 	public Medicament() {
 	}
 
-	
 	public Medicament(int idMedicament, String nomMedicament, int prix, int quantite) {
 		this.idMedicament = idMedicament;
 		this.nomMedicament = nomMedicament;
 		this.prix = prix;
 		this.quantite = quantite;
 	}
-
 
 	public int getIdMedicament() {
 		return idMedicament;
@@ -51,12 +49,10 @@ public class Medicament {
 		this.quantite = quantite;
 	}
 
-
 	@Override
 	public String toString() {
 		return "Medicament [idMedicament=" + idMedicament + ", nomMedicament=" + nomMedicament + ", prix=" + prix
 				+ ", quantite=" + quantite + "]";
 	}
-
 
 }

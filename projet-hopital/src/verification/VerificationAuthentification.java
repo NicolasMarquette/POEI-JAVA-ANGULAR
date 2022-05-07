@@ -1,9 +1,10 @@
-package model;
+package verification;
 
 import java.io.IOException;
 import java.sql.SQLException;
 
 import dao.DaoAuthentificationMySql;
+import model.Authentification;
 
 public class VerificationAuthentification implements VerificationData<String> {
 
