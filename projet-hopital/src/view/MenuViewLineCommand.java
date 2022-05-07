@@ -5,8 +5,6 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 import controller.Controller;
-import db.ConnectionManager;
-import model.Hopital;
 import model.Medicament;
 import model.Patient;
 import model.SalleConsultation;

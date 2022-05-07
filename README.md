@@ -14,3 +14,6 @@ S'il ne sont pas connu de la base ils renseignent leurs données personnelles au
 Une interface utilisateur (en mode console) permet de se positionner en tant que médecin de la salle 1 ou salle 2 ou en tant que secrétaire, en passant par le module d’authentification.
 
 La base de données est réalisé avec MySQL.
+
+### Author
+Sarah TOUZANI / Dimitri GERICOT / Nicolas MARQUETTE @2022 mai
