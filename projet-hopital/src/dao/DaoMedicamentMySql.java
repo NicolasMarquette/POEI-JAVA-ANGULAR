@@ -53,7 +53,7 @@ public class DaoMedicamentMySql implements DaoMedicament {
 		ps.setInt(1, id);
 		ResultSet rs = ps.executeQuery();
 		
-		for (rs.next()) {
+		if (rs.next()) {
 			medicament = new Medicament(rs.getInt("idMedicament"), rs.getString("nomMedicament"), rs.getInt("prix"), rs.getInt("quantite"));
 		}
 		
@@ -138,6 +138,21 @@ public class DaoMedicamentMySql implements DaoMedicament {
 		rs.close();
 	
 		return listeMedicaments;
+	}
+
+	@Override
+	public void updateQuantite(Medicament obj) throws ClassNotFoundException, SQLException, IOException {
+
+		Connection conn = ConnectionManager.getInstance().getConn();
+		
+		String sql = "UPDATE medicaments SET quantite = ? WHERE idMedicament = ?";
+		
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setInt(1, obj.getQuantite());
+		ps.setInt(2, obj.getIdMedicament());
+		ps.executeUpdate();
+		
+		ps.close();
 	}
 
 }
