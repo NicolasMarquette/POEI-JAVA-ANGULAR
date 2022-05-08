@@ -9,12 +9,11 @@ public class AffichageLigneMedicament {
 
 		Medicament medicament = ligneMedicament.getMedicament();
 		int quantite = ligneMedicament.getQuantite();
-		int prix = ligneMedicament.getPrix();
 		int total = ligneMedicament.getTotal();
 		AffichageMedicament afficherMedicament = new AffichageMedicament();
 
-		String ligneCommande = " - nom du médicament : " + medicament + " - prix : " + prix + " € - quantité : "
-				+ quantite + " - total : " + total;
+		String ligneCommande = " - id: " + new AffichageMedicament().afficherMedicament(medicament) +
+				" - total : " + total;
 		return ligneCommande;
 	}
 

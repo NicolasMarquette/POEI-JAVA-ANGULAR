@@ -5,7 +5,9 @@ import java.util.ArrayList;
 public class Ordonnance {
 
 	private String patient;
+	private String medecin;
 	private int totalOrdonnance;
+	private String dateVisite;
 	private ArrayList<LigneMedicament> ligneMedicament;
 
 	public Ordonnance(String patient) {
@@ -15,6 +17,10 @@ public class Ordonnance {
 
 	public String getPatient() {
 		return patient;
+	}
+
+	public String getMedecin() {
+		return medecin;
 	}
 
 	public int getTotalOrdonnance() {
