@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import db.ConnectionManager;
@@ -13,18 +14,42 @@ import model.Patient;
 public class DaoPatientMySql implements DaoPatient {
 
 	@Override
-	public List<Patient> findAll() throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Patient> findAll() throws ClassNotFoundException, SQLException, IOException {
+
+		ArrayList<Patient> patients = new ArrayList<Patient>();
+
+		Connection conn = ConnectionManager.getInstance().getConn();
+
+		String sql = "SELECT * FROM patients";
+
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ResultSet rs = ps.executeQuery();
+
+		while (rs.next()) {
+			Patient patient = new Patient();
+			patient.setId(rs.getInt("id"));
+			patient.setNom(rs.getString("nom"));
+			patient.setPrenom(rs.getString("prenom"));
+			patient.setDate_naissance(rs.getString("date_naissance"));
+			patient.setAge(rs.getInt("age"));
+			patient.setAdresse(rs.getString("adresse"));
+			patient.setTelephone(rs.getString("telephone"));
+			patients.add(patient);
+		}
+
+		ps.close();
+		rs.close();
+
+		return patients;
 	}
 
 	@Override
 	public Patient findById(Integer id) throws ClassNotFoundException, SQLException, IOException {
 
 		Patient patient = null;
-		
+
 		Connection conn = ConnectionManager.getInstance().getConn();
-		
+
 		String sql = "SELECT * FROM patients WHERE id = ? ";
 
 		PreparedStatement ps = conn.prepareStatement(sql);
@@ -33,12 +58,13 @@ public class DaoPatientMySql implements DaoPatient {
 
 		if (rs.next()) {
 			patient = new Patient(rs.getInt("id"), rs.getString("nom"), rs.getString("prenom"),
-					rs.getString("date_naissance"), rs.getInt("age"), rs.getString("adresse"), rs.getString("telephone"));
+					rs.getString("date_naissance"), rs.getInt("age"), rs.getString("adresse"),
+					rs.getString("telephone"));
 		}
-		
+
 		ps.close();
 		rs.close();
-		
+
 		return patient;
 	}
 
@@ -57,7 +83,7 @@ public class DaoPatientMySql implements DaoPatient {
 		ps.setString(5, obj.getAdresse());
 		ps.setString(6, obj.getTelephone());
 		ps.executeUpdate();
-		
+
 		ps.close();
 	}
 
@@ -73,15 +99,23 @@ public class DaoPatientMySql implements DaoPatient {
 		ps.setString(2, obj.getTelephone());
 		ps.setInt(3, obj.getId());
 		ps.executeUpdate();
-		
+
 		ps.close();
-		
+
 	}
 
 	@Override
-	public void delete(Patient obj) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-		
+	public void delete(Patient obj) throws ClassNotFoundException, SQLException, IOException {
+
+		Connection conn = ConnectionManager.getInstance().getConn();
+
+		String sql = "delete from patients where id = ?";
+
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setInt(1, obj.getId());
+		ps.executeUpdate();
+
+		ps.close();
 	}
 
 }
