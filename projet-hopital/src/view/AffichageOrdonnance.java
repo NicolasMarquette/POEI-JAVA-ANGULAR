@@ -13,7 +13,6 @@ public class AffichageOrdonnance {
 		String medecin = ordonnance.getMedecin();
 		String [] dateVisite = ordonnance.getDateVisite().split(" ");
 		ArrayList<LigneMedicament> ligneMedicament = ordonnance.getLigneMedicament();
-		String afficherMedicament;
 		int total = ordonnance.getTotalOrdonnance();
 		String listMedicament = "";
 		for (LigneMedicament lm : ligneMedicament) {
@@ -21,8 +20,8 @@ public class AffichageOrdonnance {
 			listMedicament += new AffichageLigneMedicament().afficherLigneCommande(lm) + "\n";
 		}
 
-		String affichage = "Voici l'ordonnance de M/Mme: " + nomPatient + " - prescrite par le medecin: " + medecin
-				+ " - en date du: " + dateVisite[0] + " - comportant:  " + listMedicament + " Total : " + total;
+		String affichage = "Voici l'ordonnance de M/Mme: " + nomPatient + "\nPrescrite par le medecin: " + medecin
+				+ "\nEn date du: " + dateVisite[0] + "\n\ncomportant:\n" + listMedicament + "\nTotal de la prescription: " + total + "€";
 
 		return affichage;
 	}

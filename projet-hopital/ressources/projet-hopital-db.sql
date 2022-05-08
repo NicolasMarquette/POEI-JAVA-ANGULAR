@@ -28,7 +28,7 @@ CREATE TABLE `authentification` (
   `login` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `nom` varchar(45) NOT NULL,
-  `metier` enum('0','1') NOT NULL,
+  `metier` enum('-1','0','1') NOT NULL,
   `salle` enum('1','2') DEFAULT NULL,
   PRIMARY KEY (`login`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -40,7 +40,7 @@ CREATE TABLE `authentification` (
 
 LOCK TABLES `authentification` WRITE;
 /*!40000 ALTER TABLE `authentification` DISABLE KEYS */;
-INSERT INTO `authentification` VALUES ('alice','wonderland','Dr Dubois','1','1'),('bob','builder','Dr Jekyll','1','2'),('clementine','mandarine','Pierre','0',NULL),('teddy','bear','Jeanne','0',NULL);
+INSERT INTO `authentification` VALUES ('admin','pass','Admin','-1',NULL),('alice','wonderland','Dr Dubois','1','1'),('bob','builder','Dr Jekyll','1','2'),('clementine','mandarine','Pierre','0',NULL),('teddy','bear','Jeanne','0',NULL);
 /*!40000 ALTER TABLE `authentification` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -96,12 +96,12 @@ DROP TABLE IF EXISTS `medicaments`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `medicaments` (
-  `idMedicament` int(11) NOT NULL AUTO_INCREMENT,
+  `idMedicament` int(11) NOT NULL,
   `nomMedicament` varchar(100) NOT NULL,
   `prix` int(11) NOT NULL,
   `quantite` int(11) NOT NULL,
   PRIMARY KEY (`idMedicament`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -110,7 +110,7 @@ CREATE TABLE `medicaments` (
 
 LOCK TABLES `medicaments` WRITE;
 /*!40000 ALTER TABLE `medicaments` DISABLE KEYS */;
-INSERT INTO `medicaments` VALUES (1,'doliprane 500mg',3,20),(2,'doliprane 1000mg',3,50),(3,'aspirine 500mg',4,10),(4,'aspirine 1000mg',4,15),(5,'spasfon 160mg',2,20);
+INSERT INTO `medicaments` VALUES (1,'doliprane 500mg',3,50),(2,'doliprane 1000mg',3,50),(3,'aspirine 500mg',4,50),(4,'aspirine 1000mg',4,50),(5,'spasfon 160mg',2,50),(6,'prozac 20mg',4,50);
 /*!40000 ALTER TABLE `medicaments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -177,7 +177,7 @@ CREATE TABLE `visites` (
   `tarif` int(11) NOT NULL,
   `ordonnance` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -222,4 +222,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-06 16:31:41
+-- Dump completed on 2022-05-08 20:33:16

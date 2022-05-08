@@ -2,8 +2,6 @@ package controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
@@ -13,7 +11,9 @@ import dao.DaoPatientMySql;
 import dao.DaoVisiteMySql;
 import db.ConnectionManager;
 import model.Authentification;
+import model.FormattedDateTime;
 import model.Hopital;
+import model.ImpressionOrdonnance;
 import model.LigneMedicament;
 import model.Medicament;
 import model.Ordonnance;
@@ -23,6 +23,7 @@ import model.SalleConsultation;
 import model.Visite;
 import verification.VerificationAuthentification;
 import verification.VerificationPatient;
+import view.AffichageOrdonnance;
 import view.MenuView;
 
 public class Controller {
@@ -55,13 +56,13 @@ public class Controller {
 		addObservers();
 	}
 
-	public void run() throws ClassNotFoundException, SQLException, IOException {
-		view.afficherMenuPrincipal();
-	}
-
 	private void addObservers() {
 		for (SalleConsultation s : hopital.getSalles())
 			s.addObserver(hopital);
+	}
+
+	public void run() throws ClassNotFoundException, SQLException, IOException {
+		view.afficherMenuPrincipal();
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -161,10 +162,7 @@ public class Controller {
 	// RAPPORT DE LA FILE D'ATTENTE
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public void ecrireRapport(int idPatient) throws IOException {
-		LocalDateTime dateTime = LocalDateTime.now();
-		DateTimeFormatter formatDateTime = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-		String formattedDateTime = dateTime.format(formatDateTime);
-		rapport.ecrireRapport(idPatient, formattedDateTime);
+		rapport.ecrireRapport(idPatient, FormattedDateTime.getFormattedDateTime());
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -184,7 +182,9 @@ public class Controller {
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public void addVisite(int idPatient, SalleConsultation salle)
 			throws ClassNotFoundException, SQLException, IOException {
-		salle.addVisite(idPatient);
+
+		salle.addVisite(idPatient, FormattedDateTime.getFormattedDateTime());
+
 		if (salle.getListVisite().size() == LIMIT_VISITE)
 			saveVisitesEnBaseDonnees(salle.getId_salle());
 	}
@@ -252,8 +252,9 @@ public class Controller {
 	public String getNomMedicamentById(int id) throws ClassNotFoundException, SQLException, IOException {
 		return daoMedicament.findById(id).getNomMedicament();
 	}
-	
-	public ArrayList<Medicament> getListeMedicamentByName(String name) throws ClassNotFoundException, SQLException, IOException {
+
+	public ArrayList<Medicament> getListeMedicamentByName(String name)
+			throws ClassNotFoundException, SQLException, IOException {
 		return (ArrayList<Medicament>) daoMedicament.findByMedicamentName(name);
 	}
 
@@ -276,22 +277,37 @@ public class Controller {
 		}
 	}
 
+	public String afficherOrdonnance(Ordonnance ordonnance) {
+		return new AffichageOrdonnance().afficherOrdonnance(ordonnance);
+	}
+
+	public void imprimerOrdonnance(Ordonnance ordonnance) throws IOException {
+		new ImpressionOrdonnance().imprimerOrdonnance(ordonnance);
+	}
+
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// ADMINISTRATEUR
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public void ajouterMedicament(Medicament medicament) throws ClassNotFoundException, SQLException, IOException {
 		daoMedicament.create(medicament);
 	}
-	
+
 	public void modifierMedicament(Medicament medicament) throws ClassNotFoundException, SQLException, IOException {
 		daoMedicament.update(medicament);
 	}
-	
+
 	public void supprimerMedicament(Medicament medicament) throws ClassNotFoundException, SQLException, IOException {
 		daoMedicament.delete(medicament);
 	}
-	
+
 	public void ajouterStockMedicament(Medicament medicament) throws ClassNotFoundException, SQLException, IOException {
 		daoMedicament.updateQuantite(medicament);
 	}
+
+	public void modifierPrixMedicament(Medicament medicament, int prix)
+			throws ClassNotFoundException, SQLException, IOException {
+		medicament.setPrix(prix);
+		daoMedicament.updatePrix(medicament);
+	}
+
 }
