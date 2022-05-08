@@ -1,6 +1,7 @@
 package dao;
 
 import java.io.IOException;
+import java.sql.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -71,7 +72,7 @@ public class DaoVisiteMySql implements DaoVisite {
 
 		Connection conn = ConnectionManager.getInstance().getConn();
 
-		String sql = "insert into visites(idpatient, date, medecin, num_salle, tarif) values (?, ?, ?, ?, ?)";
+		String sql = "insert into visites(idpatient, date, medecin, num_salle, tarif, ordonnance) values (?, ?, ?, ?, ?, ?)";
 
 		PreparedStatement ps = conn.prepareStatement(sql);
 		ps.setInt(1, obj.getIdPatient());
@@ -79,6 +80,7 @@ public class DaoVisiteMySql implements DaoVisite {
 		ps.setString(3, obj.getMedecin());
 		ps.setInt(4, obj.getNum_salle());
 		ps.setInt(5, obj.getTarif());
+		ps.setString(6, obj.getOrdonnance().toString());
 		ps.executeUpdate();
 
 		ps.close();

@@ -68,13 +68,12 @@ public class DaoMedicamentMySql implements DaoMedicament {
 		
 		Connection conn = ConnectionManager.getInstance().getConn();
 		
-		String sql = "INSERT INTO medicaments VALUES (?, ?, ?, ?)";
+		String sql = "INSERT INTO medicaments(nomMedicament, prix, quantite) VALUES (?, ?, ?)";
 		
 		PreparedStatement ps = conn.prepareStatement(sql);
-		ps.setInt(1, obj.getIdMedicament());
-		ps.setString(2, obj.getNomMedicament());
-		ps.setInt(3, obj.getPrix());
-		ps.setInt(4, obj.getQuantite());
+		ps.setString(1, obj.getNomMedicament());
+		ps.setInt(2, obj.getPrix());
+		ps.setInt(3, obj.getQuantite());
 		ps.executeUpdate();
 		
 		ps.close();
@@ -85,7 +84,7 @@ public class DaoMedicamentMySql implements DaoMedicament {
 
 		Connection conn = ConnectionManager.getInstance().getConn();
 		
-		String sql = "UPDATE medicaments SET nomMedicament = ?, prix = ?, quantite = ? WHERE idMedicament = ?)";
+		String sql = "UPDATE medicaments SET nomMedicament = ?, prix = ?, quantite = ? WHERE idMedicament = ?";
 		
 		PreparedStatement ps = conn.prepareStatement(sql);
 		ps.setString(1, obj.getNomMedicament());
@@ -102,7 +101,7 @@ public class DaoMedicamentMySql implements DaoMedicament {
 
 		Connection conn = ConnectionManager.getInstance().getConn();
 		
-		String sql = "DELETE FROM medicaments WHERE idMedicament = ?)";
+		String sql = "DELETE FROM medicaments WHERE idMedicament = ?";
 		
 		PreparedStatement ps = conn.prepareStatement(sql);
 		ps.setInt(1, obj.getIdMedicament());
@@ -119,10 +118,10 @@ public class DaoMedicamentMySql implements DaoMedicament {
 		
 		Connection conn = ConnectionManager.getInstance().getConn();
 		
-		String sql = "SELECT * FROM medicaments where nomMedicament = ?";
+		String sql = "SELECT * FROM medicaments where nomMedicament LIKE ?";
 		
 		PreparedStatement ps = conn.prepareStatement(sql);
-		ps.setString(1, name);
+		ps.setString(1, "%" + name + "%");
 		ResultSet rs = ps.executeQuery();
 		
 		while (rs.next()) {
