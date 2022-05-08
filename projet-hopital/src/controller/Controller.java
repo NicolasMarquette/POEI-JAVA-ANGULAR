@@ -14,7 +14,9 @@ import dao.DaoVisiteMySql;
 import db.ConnectionManager;
 import model.Authentification;
 import model.Hopital;
+import model.LigneMedicament;
 import model.Medicament;
+import model.Ordonnance;
 import model.Patient;
 import model.RapportFileAttente;
 import model.SalleConsultation;
@@ -25,7 +27,7 @@ import view.MenuView;
 
 public class Controller {
 
-	MenuView<Patient, Integer> view;
+	MenuView<Patient, SalleConsultation, Integer> view;
 	private Hopital hopital;
 	private VerificationAuthentification verificationAuthentification;
 	private VerificationPatient verificationPatient;
@@ -39,7 +41,7 @@ public class Controller {
 
 	private static final int LIMIT_VISITE = 10;
 
-	public Controller(MenuView<Patient, Integer> view) {
+	public Controller(MenuView<Patient, SalleConsultation, Integer> view) {
 		this.view = view;
 		view.setController(this);
 		hopital = Hopital.getHopital();
@@ -61,7 +63,7 @@ public class Controller {
 		for (SalleConsultation s : hopital.getSalles())
 			s.addObserver(hopital);
 	}
-	
+
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// FERMETURE DU PROGRAMME
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -73,8 +75,7 @@ public class Controller {
 		ConnectionManager.getInstance().closeConn();
 		System.exit(0);
 	}
-	
-	
+
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// USERS
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -106,7 +107,7 @@ public class Controller {
 			patientForCreation.setAdresse(null);
 		if (patientForCreation.getTelephone().equals(""))
 			patientForCreation.setTelephone(null);
-		
+
 		daoPatient.create(patientForCreation);
 	}
 
@@ -121,7 +122,7 @@ public class Controller {
 		patient.setTelephone(tel);
 		daoPatient.update(patient);
 	}
-	
+
 	public boolean verifPatient(int id) throws ClassNotFoundException, SQLException, IOException {
 		boolean verifPatient = verificationPatient.verify(id);
 		return verifPatient;
@@ -188,6 +189,17 @@ public class Controller {
 			saveVisitesEnBaseDonnees(salle.getId_salle());
 	}
 
+	public Visite getCurrentVisite(SalleConsultation salle) {
+
+		Visite visite = null;
+
+		int visiteEnCours = salle.getListVisite().size();
+		if (visiteEnCours > 0) {
+			visite = salle.getListVisite().get(visiteEnCours - 1);
+		}
+		return visite;
+	}
+
 	public LinkedList<Visite> getListeVisites(int id) {
 		LinkedList<Visite> liste = hopital.getSalles().get(id - 1).getListVisite();
 		return liste;
@@ -233,7 +245,53 @@ public class Controller {
 		return result;
 	}
 
+	public Medicament getMedicamentById(int id) throws ClassNotFoundException, SQLException, IOException {
+		return daoMedicament.findById(id);
+	}
+
 	public String getNomMedicamentById(int id) throws ClassNotFoundException, SQLException, IOException {
 		return daoMedicament.findById(id).getNomMedicament();
+	}
+	
+	public ArrayList<Medicament> getListeMedicamentByName(String name) throws ClassNotFoundException, SQLException, IOException {
+		return (ArrayList<Medicament>) daoMedicament.findByMedicamentName(name);
+	}
+
+	public void addMedicamentInOrdonnance(Ordonnance ordonnance, Medicament medicament, SalleConsultation salle) {
+
+		Visite visite = getCurrentVisite(salle);
+
+		if (visite != null) {
+			int quantite = medicament.getQuantite();
+			LigneMedicament ligne = new LigneMedicament(quantite, medicament);
+
+			String ligneMedicament = "Q:" + quantite + " id:" + medicament.getIdMedicament() + " nom: "
+					+ medicament.getNomMedicament() + " prix unitaire:" + medicament.getPrix();
+
+			int tarif = visite.getTarif();
+			visite.setOrdonnance(ligneMedicament);
+			visite.setTarif(tarif + ligne.getTotal());
+
+			ordonnance.setLigneMedicament(ligne);
+		}
+	}
+
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// ADMINISTRATEUR
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	public void ajouterMedicament(Medicament medicament) throws ClassNotFoundException, SQLException, IOException {
+		daoMedicament.create(medicament);
+	}
+	
+	public void modifierMedicament(Medicament medicament) throws ClassNotFoundException, SQLException, IOException {
+		daoMedicament.update(medicament);
+	}
+	
+	public void supprimerMedicament(Medicament medicament) throws ClassNotFoundException, SQLException, IOException {
+		daoMedicament.delete(medicament);
+	}
+	
+	public void ajouterStockMedicament(Medicament medicament) throws ClassNotFoundException, SQLException, IOException {
+		daoMedicament.updateQuantite(medicament);
 	}
 }

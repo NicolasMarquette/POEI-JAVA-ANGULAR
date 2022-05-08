@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 public class Visite {
 
 	private int id;
@@ -8,9 +10,20 @@ public class Visite {
 	private String medecin;
 	private int num_salle;
 	private int tarif;
-	// private Ordonnance[] ordonnances;
+	private ArrayList<String> ordonnance;
 
 	public Visite() {
+	}
+
+	public Visite(int id, int idPatient, String date, String medecin, int num_salle, int tarif,
+			ArrayList<String> ordonnance) {
+		this.id = id;
+		this.idPatient = idPatient;
+		this.date = date;
+		this.medecin = medecin;
+		this.num_salle = num_salle;
+		this.tarif = tarif;
+		this.ordonnance = ordonnance;
 	}
 
 	public Visite(int id, int idPatient, String date, String medecin, int num_salle, int tarif) {
@@ -19,7 +32,7 @@ public class Visite {
 		this.medecin = medecin;
 		this.num_salle = num_salle;
 		this.tarif = tarif;
-		// this.ordonnances = ordonnances;
+		this.ordonnance = new ArrayList<String>();
 	}
 
 	public Visite(int idPatient, String date, String medecin, int num_salle, int tarif) {
@@ -28,6 +41,7 @@ public class Visite {
 		this.medecin = medecin;
 		this.num_salle = num_salle;
 		this.tarif = tarif;
+		this.ordonnance = new ArrayList<String>();
 	}
 
 	public Visite(int idPatient, String date, String medecin, int num_salle) {
@@ -35,6 +49,7 @@ public class Visite {
 		this.date = date;
 		this.medecin = medecin;
 		this.num_salle = num_salle;
+		this.ordonnance = new ArrayList<String>();
 	}
 
 	public int getIdPatient() {
@@ -84,17 +99,19 @@ public class Visite {
 	public void setTarif(int tarif) {
 		this.tarif = tarif;
 	}
-	// public Ordonnance[] getOrdonnances() {
-	// return ordonnances;
-	// }
-	// public void setOrdonnances(Ordonnance[] ordonnances) {
-	// this.ordonnances = ordonnances;
-	// }
+
+	public ArrayList<String> getOrdonnance() {
+		return ordonnance;
+	}
+
+	public void setOrdonnance(String ligne) {
+		this.ordonnance.add(ligne);
+	}
 
 	@Override
 	public String toString() {
-		return "Visite [idPatient=" + idPatient + ", date=" + date + ", medecin=" + medecin + ", num_salle=" + num_salle
-				+ ", tarif=" + tarif + "]\n";
+		return "Visite [id=" + id + ", idPatient=" + idPatient + ", date=" + date + ", medecin=" + medecin
+				+ ", num_salle=" + num_salle + ", tarif=" + tarif + ", ordonnance=" + ordonnance + "]";
 	}
 
 }
