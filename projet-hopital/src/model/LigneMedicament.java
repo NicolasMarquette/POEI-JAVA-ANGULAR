@@ -10,7 +10,7 @@ public class LigneMedicament {
 
 	}
 
-	public LigneMedicament(int quantite, Medicament medicament, int total) {
+	public LigneMedicament(int quantite, Medicament medicament) {
 		this.quantite = quantite;
 		this.medicament = medicament;
 		setTotal();

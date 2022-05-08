@@ -6,11 +6,12 @@ import java.util.Scanner;
 
 import controller.Controller;
 import model.Medicament;
+import model.Ordonnance;
 import model.Patient;
 import model.SalleConsultation;
 import model.Visite;
 
-public class MenuViewLineCommand implements MenuView<Patient, Integer> {
+public class MenuViewLineCommand implements MenuView<Patient, SalleConsultation, Integer> {
 
 	private Controller controller;
 	private Scanner clavierint = new Scanner(System.in);
@@ -18,9 +19,14 @@ public class MenuViewLineCommand implements MenuView<Patient, Integer> {
 	private AffichagePatient afficherPatient = new AffichagePatient();
 	private AffichageVisite afficherVisite = new AffichageVisite();
 	private AffichageMedicament afficherMedicament = new AffichageMedicament();
+	private Ordonnance ordonnance;
 
 	public MenuViewLineCommand() {
-
+		clavierint = new Scanner(System.in);
+		clavierString = new Scanner(System.in);
+		afficherPatient = new AffichagePatient();
+		afficherVisite = new AffichageVisite();
+		afficherMedicament = new AffichageMedicament();
 	}
 
 	public void setController(Controller controller) {
@@ -86,6 +92,9 @@ public class MenuViewLineCommand implements MenuView<Patient, Integer> {
 					break;
 				case 1:
 					afficherMenuMedecin();
+					break;
+				case -1:
+					afficherMenuAdmin();
 					break;
 				default:
 					System.out.println("--------------------------------------------");
@@ -238,7 +247,8 @@ public class MenuViewLineCommand implements MenuView<Patient, Integer> {
 				+ "1. Accueillir le prochain patient (rendre la salle disponible)\n"
 				+ "2. Afficher la file d'attente \n" + "3. Afficher la liste des visites\n"
 				+ "4. Sauvegarder en base les visites \n" + "5. Afficher la liste des visites en base du " + username
-				+ "\n" + "6. Etablir une ordonnance\n" + "7. Menu principal");
+				+ "\n" + "6. Etablir une ordonnance\n" + "7. Afficher l'ordonnance\n" + "8. Imprimer l'ordonnance\n"
+				+ "9. Menu principal");
 		int choixMed = clavierint.nextInt();
 
 		switch (choixMed) {
@@ -250,7 +260,9 @@ public class MenuViewLineCommand implements MenuView<Patient, Integer> {
 						.println("Patient qui entre dans la salle de consultation " + numeroSalleConsultation + " : ");
 				System.out.println(afficherPatient.afficherPatient(salle.getPatient()));
 				controller.addVisite(salle.getPatient().getId(), salle);
+				ordonnance = new Ordonnance(salle.getPatient().getNom());
 			} else {
+				ordonnance = null;
 				System.out.println("Il n'y a plus de patients dans la salle d'attente");
 			}
 			break;
@@ -278,9 +290,15 @@ public class MenuViewLineCommand implements MenuView<Patient, Integer> {
 				System.out.println(afficherVisite.afficherVisite(v));
 			break;
 		case 6:
-			afficherMenuOrdonnance(salle.getPatient());
+			afficherMenuOrdonnance(salle);
 			break;
 		case 7:
+			System.out.println(ordonnance);
+			break;
+		case 8:
+			System.out.println(ordonnance);
+			break;
+		case 9:
 			afficherMenuPrincipal();
 			break;
 		default:
@@ -294,35 +312,150 @@ public class MenuViewLineCommand implements MenuView<Patient, Integer> {
 	// MENU ORDONNANCE
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	@Override
-	public void afficherMenuOrdonnance(Patient patient) throws ClassNotFoundException, SQLException, IOException {
+	public void afficherMenuOrdonnance(SalleConsultation salle)
+			throws ClassNotFoundException, SQLException, IOException {
 
 		int choixMedicament = 0;
-		do {
-			System.out.println("--------------------------------------------");
-			System.out.println("Menu ordonnance");
-			System.out.println("\nListe des médicaments disponibles : ");
-			for (Medicament m : controller.getListeMedicament()) {
-				System.out.println("* " + afficherMedicament.afficherMedicament(m));
-			}
-			System.out.println("0. Editer l'ordonnance\n");
+		Patient patient = salle.getPatient();
 
-			System.out.println("Veuillez saisir votre choix : ");
-			choixMedicament = clavierint.nextInt();
+		if (patient != null) {
+			// ordonnance = new Ordonnance(patient.getNom());
 
-			if (choixMedicament != 0) {
-				System.out.println("Veuillez saisir la quantité : ");
-				int choixQuantiteMedicament = clavierint.nextInt();
-				if (controller.updateQuantiteMedicament(choixMedicament, choixQuantiteMedicament)) {
-					System.out.println(choixQuantiteMedicament + " " + controller.getNomMedicamentById(choixMedicament)
-							+ " prescrit sur l'ordonnance");
-				} else {
-					System.out.println("Il n'y a pas assez de stock de ce médicament pour la quantité désirée : "
-							+ choixQuantiteMedicament);
+			do {
+				System.out.println("--------------------------------------------");
+				System.out.println("Menu ordonnance");
+				System.out.println("\nListe des médicaments disponibles : ");
+				for (Medicament m : controller.getListeMedicament()) {
+					System.out.println("* " + afficherMedicament.afficherMedicament(m));
 				}
+				System.out.println("0. Editer l'ordonnance\n");
 
-			}
-		} while (choixMedicament != 0);
+				System.out.println("Veuillez saisir votre choix : ");
+				choixMedicament = clavierint.nextInt();
+
+				if (choixMedicament != 0) {
+					Medicament medicament = controller.getMedicamentById(choixMedicament);
+
+					System.out.println("Veuillez saisir la quantité : ");
+					int choixQuantiteMedicament = clavierint.nextInt();
+
+					if (choixQuantiteMedicament > 0
+							&& controller.updateQuantiteMedicament(choixMedicament, choixQuantiteMedicament)) {
+
+						medicament.setQuantite(choixQuantiteMedicament);
+						controller.addMedicamentInOrdonnance(ordonnance, medicament, salle);
+						System.out.println(choixQuantiteMedicament + " "
+								+ controller.getNomMedicamentById(choixMedicament) + " prescrit sur l'ordonnance");
+					} else {
+						System.out.println("Il n'y a pas assez de stock de ce médicament pour la quantité désirée : "
+								+ choixQuantiteMedicament);
+					}
+				}
+			} while (choixMedicament != 0);
+		} else {
+			System.out.println("Vous n'avez pas de patient");
+		}
 		afficherMenuMedecin();
+	}
+
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// MENU ADMINISTRATEUR
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	@Override
+	public void afficherMenuAdmin() throws ClassNotFoundException, SQLException, IOException {
+
+		System.out.println("--------------------------------------------");
+		System.out.println("Bienvenue sur le menu administrateur\n");
+		System.out.println("1. Ajouter un médicament dans la base\n" + "2. Modifier un médicament dans la base\n"
+				+ "3. Supprimer un médicament dans la base\n" + "4. Rajouter du stock à un médicament\n"
+				+ "5. Menu principal");
+		int choix = clavierint.nextInt();
+
+		switch (choix) {
+		case 1:
+			System.out.println("--------------------------------------------");
+			System.out.println("Veuillez entrer l'identifiant du médicament");
+			int createId = clavierint.nextInt();
+			System.out.println("Veuillez entrer le nom du médicament:");
+			String nomMedicament = clavierString.nextLine();
+			System.out.println("Veuillez entrer le prix du médicament:");
+			int prix = clavierint.nextInt();
+			System.out.println("Veuillez entrer la quantite:");
+			int quantite = clavierint.nextInt();
+
+			if ((createId > 0) && (nomMedicament != "") && (prix > 0) && (quantite > 0)) {
+				controller.ajouterMedicament(new Medicament(createId, nomMedicament, prix, quantite));
+				System.out.println("Médicament " + nomMedicament + " ajouté dans la base");
+			} else {
+				System.out.println("--------------------------------------------");
+				System.out.println("Erreur dans votre saisie");
+			}
+			break;
+		case 2:
+			int choixId = idDuMedicamentSelonNom();
+
+			System.out.println("Veuillez entrer le nouveau nom du médicament:");
+			String newNomMedi = clavierString.nextLine();
+			System.out.println("Veuillez entrer le nouveau prix du médicament:");
+			int newPrix = clavierint.nextInt();
+			System.out.println("Veuillez entrer la nouvelle quantité:");
+			int newQuantite = clavierint.nextInt();
+
+			if ((newNomMedi != "") && (newPrix > 0) && (newQuantite > 0)) {
+				controller.modifierMedicament(new Medicament(choixId, newNomMedi, newPrix, newQuantite));
+				System.out.println("Mise à jour du médicament faite");
+			} else {
+				System.out.println("--------------------------------------------");
+				System.out.println("Erreur dans votre saisie");
+			}
+			break;
+		case 3:
+			int choixIdDelete = idDuMedicamentSelonNom();
+
+			if (choixIdDelete > 0) {
+				controller.supprimerMedicament(new Medicament(choixIdDelete));
+				System.out.println("Suppression du médicament faite en base");
+			} else {
+				System.out.println("--------------------------------------------");
+				System.out.println("Erreur dans votre saisie");
+			}
+			break;
+		case 4:
+			int id = idDuMedicamentSelonNom();
+
+			if (id > 0) {
+				System.out.println("Veuillez entrer la nouvelle quantité:");
+				int updateQuantite = clavierint.nextInt();
+				controller.ajouterStockMedicament(new Medicament(id, updateQuantite));
+				System.out.println("Mise à jour de la quantité faite");
+			}
+
+			System.out.println(id);
+			break;
+		case 5:
+			afficherMenuPrincipal();
+			break;
+		default:
+			System.out.println("--------------------------------------------");
+			System.out.println("Saisie incorrecte");
+		}
+		afficherMenuAdmin();
+	}
+
+	private int idDuMedicamentSelonNom() throws ClassNotFoundException, SQLException, IOException {
+
+		System.out.println("--------------------------------------------");
+		System.out.println("Veuillez entrer le nom du médicament:");
+		String nomMedi = clavierString.nextLine();
+
+		for (Medicament m : controller.getListeMedicamentByName(nomMedi)) {
+			System.out.println("* " + afficherMedicament.afficherMedicament(m));
+		}
+
+		System.out.println("\nSaisir l'id du médicament souhaité:");
+		int choixId = clavierint.nextInt();
+
+		return choixId;
 	}
 
 }

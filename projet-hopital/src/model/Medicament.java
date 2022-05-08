@@ -10,6 +10,21 @@ public class Medicament {
 	public Medicament() {
 	}
 
+	public Medicament(int idMedicament) {
+		this.idMedicament = idMedicament;
+	}
+
+	public Medicament(int idMedicament, int quantite) {
+		this.idMedicament = idMedicament;
+		this.quantite = quantite;
+	}
+
+	public Medicament(String nomMedicament, int prix, int quantite) {
+		this.nomMedicament = nomMedicament;
+		this.prix = prix;
+		this.quantite = quantite;
+	}
+
 	public Medicament(int idMedicament, String nomMedicament, int prix, int quantite) {
 		this.idMedicament = idMedicament;
 		this.nomMedicament = nomMedicament;
