@@ -5,7 +5,7 @@ import model.Medicament;
 
 public class AffichageLigneMedicament {
 
-	public String ligneCommande(LigneMedicament ligneMedicament) {
+	public String afficherLigneCommande(LigneMedicament ligneMedicament) {
 
 		Medicament medicament = ligneMedicament.getMedicament();
 		int quantite = ligneMedicament.getQuantite();

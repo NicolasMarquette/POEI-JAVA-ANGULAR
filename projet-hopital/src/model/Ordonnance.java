@@ -10,8 +10,9 @@ public class Ordonnance {
 	private String dateVisite;
 	private ArrayList<LigneMedicament> ligneMedicament;
 
-	public Ordonnance(String patient) {
+	public Ordonnance(String patient , String dateVisite) {
 		this.patient = patient;
+		this.dateVisite = dateVisite;
 		this.ligneMedicament = new ArrayList<LigneMedicament>();
 	}
 
@@ -25,6 +26,10 @@ public class Ordonnance {
 
 	public int getTotalOrdonnance() {
 		return totalOrdonnance;
+	}
+
+	public String getDateVisite() {
+		return dateVisite;
 	}
 
 	public ArrayList<LigneMedicament> getLigneMedicament() {
