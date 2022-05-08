@@ -68,12 +68,13 @@ public class DaoMedicamentMySql implements DaoMedicament {
 		
 		Connection conn = ConnectionManager.getInstance().getConn();
 		
-		String sql = "INSERT INTO medicaments(nomMedicament, prix, quantite) VALUES (?, ?, ?)";
+		String sql = "INSERT INTO medicaments VALUES (?, ?, ?, ?)";
 		
 		PreparedStatement ps = conn.prepareStatement(sql);
-		ps.setString(1, obj.getNomMedicament());
-		ps.setInt(2, obj.getPrix());
-		ps.setInt(3, obj.getQuantite());
+		ps.setInt(1, obj.getIdMedicament());
+		ps.setString(2, obj.getNomMedicament());
+		ps.setInt(3, obj.getPrix());
+		ps.setInt(4, obj.getQuantite());
 		ps.executeUpdate();
 		
 		ps.close();
@@ -148,6 +149,21 @@ public class DaoMedicamentMySql implements DaoMedicament {
 		
 		PreparedStatement ps = conn.prepareStatement(sql);
 		ps.setInt(1, obj.getQuantite());
+		ps.setInt(2, obj.getIdMedicament());
+		ps.executeUpdate();
+		
+		ps.close();
+	}
+	
+	@Override
+	public void updatePrix(Medicament obj) throws ClassNotFoundException, SQLException, IOException {
+
+		Connection conn = ConnectionManager.getInstance().getConn();
+		
+		String sql = "UPDATE medicaments SET prix = ? WHERE idMedicament = ?";
+		
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setInt(1, obj.getPrix());
 		ps.setInt(2, obj.getIdMedicament());
 		ps.executeUpdate();
 		

@@ -13,7 +13,7 @@ public class AffichageLigneMedicament {
 		AffichageMedicament afficherMedicament = new AffichageMedicament();
 
 		String ligneCommande = " - id: " + new AffichageMedicament().afficherMedicament(medicament) +
-				" - total : " + total;
+				" - total : " + total + "€";
 		return ligneCommande;
 	}
 

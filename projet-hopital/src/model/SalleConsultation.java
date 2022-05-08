@@ -15,10 +15,8 @@ public class SalleConsultation {
 	}
 
 	public SalleConsultation(int id_salle, ListVisite<LinkedList<Visite>> listVisite) {
-		super();
 		this.id_salle = id_salle;
 		this.listVisite = listVisite;
-
 	}
 
 	public SalleConsultation(int id_salle, String medecin, ListVisite<LinkedList<Visite>> listVisite) {
@@ -55,8 +53,8 @@ public class SalleConsultation {
 		this.patient = patient;
 	}
 
-	public void addVisite(int id_patient) {
-		listVisite.setVisites(id_patient, medecin, id_salle);
+	public void addVisite(int id_patient, String dateVisite) {
+		listVisite.setVisites(id_patient, medecin, id_salle, dateVisite);
 	}
 
 	public synchronized void addObserver(Hopital h) {

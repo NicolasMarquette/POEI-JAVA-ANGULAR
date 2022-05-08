@@ -10,5 +10,7 @@ public interface DaoMedicament extends Dao<Medicament, Integer> {
 
 	public List<Medicament> findByMedicamentName(String name) throws ClassNotFoundException, SQLException, IOException; 
 	
-	public void updateQuantite(Medicament obj) throws ClassNotFoundException, SQLException, IOException; 
+	public void updateQuantite(Medicament obj) throws ClassNotFoundException, SQLException, IOException;
+	
+	public void updatePrix(Medicament obj) throws ClassNotFoundException, SQLException, IOException; 
 }
