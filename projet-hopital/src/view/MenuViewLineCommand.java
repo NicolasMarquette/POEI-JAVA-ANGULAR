@@ -214,7 +214,12 @@ public class MenuViewLineCommand implements MenuView<Patient, SalleConsultation,
 				System.out.println("Saisir le téléphone");
 				telPatient = clavierString.nextLine();
 				patient.setAdresse(adrPatient);
+				if (patient.getAdresse().equals("")) {
+					patient.setAdresse(null);
+				}
 				patient.setTelephone(telPatient);
+				if (patient.getTelephone().equals(""))
+					patient.setTelephone(null);
 				break;
 			}
 			System.out.println("--------------------------------------------");
