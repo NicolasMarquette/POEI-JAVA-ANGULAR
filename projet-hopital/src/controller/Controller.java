@@ -104,11 +104,10 @@ public class Controller {
 
 	public void createPatient(Patient patient) throws ClassNotFoundException, SQLException, IOException {
 		Patient patientForCreation = patient;
-		if (patientForCreation.getAdresse().equals(""))
-			patientForCreation.setAdresse(null);
-		if (patientForCreation.getTelephone().equals(""))
-			patientForCreation.setTelephone(null);
-
+//		if (patientForCreation.getAdresse().equals(""))
+//			patientForCreation.setAdresse(null);
+//		if (patientForCreation.getTelephone().equals(""))
+//			patientForCreation.setTelephone(null);
 		daoPatient.create(patientForCreation);
 	}
 
