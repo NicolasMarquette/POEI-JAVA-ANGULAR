@@ -12,7 +12,7 @@ public class RapportFileAttente {
 
 	public void ecrireRapport(int id, String dateTime) throws IOException {
 
-		String filePath = "fileAttenteLog.txt";
+		String filePath = "log/fileAttenteLog.txt";
 		File file = new File(filePath);
 		FileWriter fw;
 		BufferedWriter bw;
