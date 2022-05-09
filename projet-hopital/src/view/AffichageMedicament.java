@@ -10,8 +10,8 @@ public class AffichageMedicament {
 		String nomMedicament = medicament.getNomMedicament();
 		int prix = medicament.getPrix();
 		int quantite = medicament.getQuantite();
-		String affichage = idMedicament + " - nom du médicament : " + nomMedicament
-				+ " - prix : " + prix + " € - quantité : " + quantite;
+		String affichage = idMedicament + " - nom du mÃ©dicament : " + nomMedicament
+				+ " - prix : " + prix + " ï¿½ - quantitÃ© : " + quantite;
 		return affichage;
 	}
 

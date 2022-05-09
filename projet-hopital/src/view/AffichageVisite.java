@@ -12,8 +12,8 @@ public class AffichageVisite {
 		int numSalle = visite.getNum_salle();
 		int tarif = visite.getTarif();
 		String affichage = "Date de la visite : " + dateVisite
-				+ " - Id du patient : " + idPatient + " - Nom du médecin : " + medecin + " - Numéro de la salle : "
-				+ numSalle + " - Tarif : " + tarif + " €";
+				+ " - Id du patient : " + idPatient + " - Nom du mÃ©decin : " + medecin + " - NumÃ©ro de la salle : "
+				+ numSalle + " - Tarif : " + tarif + "â‚¬";
 		return affichage;
 	}
 
