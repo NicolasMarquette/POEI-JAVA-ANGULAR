@@ -21,7 +21,7 @@ public class AffichageOrdonnance {
 		}
 
 		String affichage = "Voici l'ordonnance de M/Mme: " + nomPatient + "\nPrescrite par le medecin: " + medecin
-				+ "\nEn date du: " + dateVisite[0] + "\n\ncomportant:\n" + listMedicament + "\nTotal de la prescription: " + total + "€";
+				+ "\nEn date du: " + dateVisite[0] + "\n\ncomportant:\n" + listMedicament + "\nTotal de la prescription: " + total + "â‚¬";
 
 		return affichage;
 	}

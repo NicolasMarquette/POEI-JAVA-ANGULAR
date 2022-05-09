@@ -18,7 +18,6 @@ public class VerificationPatient implements VerificationData<Integer> {
 	public boolean verify(Integer id) throws ClassNotFoundException, SQLException, IOException {
 
 		boolean verif = false;
-		System.out.println(id);
 
 		Patient patient = new DaoPatientMySql().findById(id);
 		if (patient != null) {

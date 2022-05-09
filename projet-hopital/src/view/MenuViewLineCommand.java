@@ -120,7 +120,7 @@ public class MenuViewLineCommand implements MenuView<Patient, SalleConsultation,
 		System.out.println("--------------------------------------------");
 		System.out.println("Bonjour " + controller.getUser().getNom() + "\n");
 		System.out.println("Veuillez choisir parmi les options suivantes :\n\n"
-				+ "1. Ajouter un patient àla file d'attente\n" + "2. Afficher la file d'attente \n"
+				+ "1. Ajouter un patient à la file d'attente\n" + "2. Afficher la file d'attente \n"
 				+ "3. Afficher le prochain patient de la file \n" + "4. Ajouter une adresse/tel  un patient\n"
 				+ "5. Afficher la liste des visites en base d'un patient selon son ID\n" + "6. Menu principal");
 		int choixSec = clavierint.nextInt();
@@ -184,8 +184,9 @@ public class MenuViewLineCommand implements MenuView<Patient, SalleConsultation,
 		String datePatient = "";
 		String adrPatient = "";
 		String telPatient = "";
+		Patient patient;
 		if (controller.verifPatient(id)) {
-			Patient patient = controller.findByIdPatient(id);
+			patient = controller.findByIdPatient(id);
 			System.out.println("--------------------------------------------");
 			if (!controller.isPatientDansFileAttente(patient.getId())) {
 				controller.addPatientDansFile(patient);
@@ -202,7 +203,7 @@ public class MenuViewLineCommand implements MenuView<Patient, SalleConsultation,
 			prenomPatient = clavierString.nextLine();
 			System.out.println("Saisir la date de naissance : (AAAA-MM-JJ)");
 			datePatient = clavierString.nextLine();
-			Patient patient = new Patient(id, nomPatient, prenomPatient, datePatient);
+			patient = new Patient(id, nomPatient, prenomPatient, datePatient);
 			System.out.println("Voulez vous saisir l'adresse et/ou le téléphone? O/N");
 			String choixPatient1 = clavierString.nextLine();
 			switch (choixPatient1) {
@@ -214,12 +215,8 @@ public class MenuViewLineCommand implements MenuView<Patient, SalleConsultation,
 				System.out.println("Saisir le téléphone");
 				telPatient = clavierString.nextLine();
 				patient.setAdresse(adrPatient);
-				if (patient.getAdresse().equals("")) {
-					patient.setAdresse(null);
-				}
 				patient.setTelephone(telPatient);
-				if (patient.getTelephone().equals(""))
-					patient.setTelephone(null);
+				controller.changeToNull(patient);
 				break;
 			}
 			System.out.println("--------------------------------------------");
