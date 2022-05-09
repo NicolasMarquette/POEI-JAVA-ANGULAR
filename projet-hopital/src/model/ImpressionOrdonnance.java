@@ -13,7 +13,7 @@ public class ImpressionOrdonnance {
 		String nomPatient = ordonnance.getPatient();
 		String[] dateOrdonnance = ordonnance.getDateVisite().split(" ");
 
-		String filePath = "ordonnance_" + nomPatient + "_" + dateOrdonnance[0] + ".txt";
+		String filePath = "log/ordonnance_" + nomPatient + "_" + dateOrdonnance[0] + ".txt";
 
 		FileWriter fw = new FileWriter(filePath);
 		BufferedWriter bw = new BufferedWriter(fw);
