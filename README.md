@@ -16,4 +16,4 @@ Une interface utilisateur (en mode console) permet de se positionner en tant que
 La base de données est réalisé avec MySQL.
 
 ### Author
-Sarah TOUZANI / Dimitri GERICOT / Nicolas MARQUETTE @2022 mai
+Sarah TOUZANI | Dimitri GERICOT | Nicolas MARQUETTE | @2022
