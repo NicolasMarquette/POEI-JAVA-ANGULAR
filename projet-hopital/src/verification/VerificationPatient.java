@@ -1,9 +1,10 @@
-package model;
+package verification;
 
 import java.io.IOException;
 import java.sql.SQLException;
 
 import dao.DaoPatientMySql;
+import model.Patient;
 
 public class VerificationPatient implements VerificationData<Integer> {
 
@@ -17,7 +18,6 @@ public class VerificationPatient implements VerificationData<Integer> {
 	public boolean verify(Integer id) throws ClassNotFoundException, SQLException, IOException {
 
 		boolean verif = false;
-		System.out.println(id);
 
 		Patient patient = new DaoPatientMySql().findById(id);
 		if (patient != null) {

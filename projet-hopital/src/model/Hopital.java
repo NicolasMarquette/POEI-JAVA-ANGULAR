@@ -2,8 +2,6 @@ package model;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.Observable;
-import java.util.Observer;
 
 public class Hopital {
 
@@ -17,10 +15,6 @@ public class Hopital {
 		setSalles(new SalleConsultation(2, new ListVisiteSalle2()));
 	}
 
-	public void setSecretaire(String secretaire) {
-		this.secretaire = secretaire;
-	}
-
 	public static Hopital getHopital() {
 		if (hopital == null) {
 			hopital = new Hopital();
@@ -28,8 +22,24 @@ public class Hopital {
 		return hopital;
 	}
 
+	public String getSecretaire() {
+		return secretaire;
+	}
+
+	public void setSecretaire(String secretaire) {
+		this.secretaire = secretaire;
+	}
+
 	public LinkedList<Patient> getFileAttente() {
 		return fileAttente;
+	}
+
+	public ArrayList<SalleConsultation> getSalles() {
+		return salles;
+	}
+
+	public void setSalles(SalleConsultation salle) {
+		salles.add(salle);
 	}
 
 	public Patient getProchainPatientEnFileAttente() {
@@ -41,18 +51,8 @@ public class Hopital {
 		fileAttente.add(patient);
 	}
 
-	public void setSalles(SalleConsultation salle) {
-		salles.add(salle);
-	}
-
-	public ArrayList<SalleConsultation> getSalles() {
-		return salles;
-	}
-
-	
 	public void update(int arg) {
-		salles.get(arg-1).setPatient(fileAttente.pop());
-		
+		salles.get(arg - 1).setPatient(fileAttente.pop());
 	}
 
 }

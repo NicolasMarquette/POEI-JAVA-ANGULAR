@@ -6,10 +6,10 @@ import java.util.List;
 
 public interface Dao<T, PK> {
 	
-	public List<T> findAll() throws ClassNotFoundException, SQLException;
+	public List<T> findAll() throws ClassNotFoundException, SQLException, IOException;
 	public T findById(PK id) throws ClassNotFoundException, SQLException, IOException;
 	public void create(T obj) throws ClassNotFoundException, SQLException, IOException;
 	public void update(T obj) throws ClassNotFoundException, SQLException, IOException;
-	public void delete(T obj) throws ClassNotFoundException, SQLException;
+	public void delete(T obj) throws ClassNotFoundException, SQLException, IOException;
 
 }

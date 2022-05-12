@@ -18,6 +18,8 @@ public class ConnectionManager {
 
 	private static ConnectionManager connectionManager;
 
+	private static final String PATH_PROPERTIES = "ressources/jdbc.properties";
+
 	private ConnectionManager() throws ClassNotFoundException, IOException, SQLException {
 		setConnection();
 	}
@@ -51,14 +53,13 @@ public class ConnectionManager {
 		password = prop.getProperty("password");
 
 		Class.forName(driverClass);
-
 		conn = DriverManager.getConnection(url, username, password);
 	}
 
 	private Properties loadPropertiesFile() throws IOException {
 
 		Properties prop = new Properties();
-		InputStream in = new FileInputStream("jdbc.properties");
+		InputStream in = new FileInputStream(PATH_PROPERTIES);
 		prop.load(in);
 		in.close();
 
