@@ -40,6 +40,7 @@ CREATE TABLE `articles` (
 
 LOCK TABLES `articles` WRITE;
 /*!40000 ALTER TABLE `articles` DISABLE KEYS */;
+INSERT INTO `articles` VALUES (1,'Giyuniki','Brochette de bœuf cuite au grill',6,'Giyuniki.jpg'),(2,'Cheese','Brochette de bœuf et fromage cuite au grill',6,'Cheese.jpg'),(3,'Tsukune','Brochette de boulettes de poulet cuite au grill',6,'Tsukune.jpg'),(4,'Shake','Tranches de saumon cru',10,'Shake.jpg'),(5,'Maguro','Tranches de thon cru',10,'Maguro.jpg'),(6,'Saumon','California saumon avocat',8,'CalSaumon.jpg'),(7,'Thon','California thon avocat',8,'CalThon.jpg'),(8,'Riz nature','Bol de riz nature',2,'Riznature.jpg'),(9,'Riz vinaigré','Bol de riz vinaigré',2,'RizVinaigre.jpg'),(10,'Mochi','Pâte de riz fourrée',4,'Mochi.jpg'),(11,'Nougat Japonais','Nougat avec graines de sésame et cacahuettes',3,'Nougat.jpg'),(12,'Ramune','Limonade japonaise 20cL',4,'Ramune.jpg'),(13,'Kirin','Bière japonaise 33cL',4,'Kirin.jpg'),(14,'Jus de lychee','Jus de lychee 25cL',3,'jusLychee.jpg');
 /*!40000 ALTER TABLE `articles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -106,4 +107,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-16 16:28:04
+-- Dump completed on 2022-05-16 16:51:59
