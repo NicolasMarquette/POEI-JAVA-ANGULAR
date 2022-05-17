@@ -43,7 +43,7 @@ public class ServletPanier extends HttpServlet {
 		ServletContext app = request.getServletContext();
 		ArrayList<Article> listArticles = (ArrayList<Article>) app.getAttribute("articles");
 
-		String nom = request.getParameter("article"); //.replace("Ã©", "é");
+		String nom = request.getParameter("article");
 		int quantite = Integer.parseInt(request.getParameter("quantite"));
 		Article article = listArticles.stream().filter(a -> a.getNom().equals(nom)).findFirst().orElse(null);
 		int idarticle = article.getIdArticle();
