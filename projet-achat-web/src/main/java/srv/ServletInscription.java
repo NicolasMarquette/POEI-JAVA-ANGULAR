@@ -41,7 +41,6 @@ public class ServletInscription extends HttpServlet {
 		String tel = request.getParameter("tel");
 	
 		Client client = new Client(email, pass, nom, prenom, adresse, tel);
-		System.out.println(pass);
 		try {
 			daoClientMySql = new DaoClientMySql();
 			daoClientMySql.create(client);
