@@ -17,7 +17,7 @@
 </head>
 <body>
 <h1>Veuillez rentrer vos informations </h1>
-		<form action="servlet1" method="post">
+		<form action="servletInscription" method="post">
 		<div class="container" style = "width : 800px">
 			<div class="label">
 			<fieldset>

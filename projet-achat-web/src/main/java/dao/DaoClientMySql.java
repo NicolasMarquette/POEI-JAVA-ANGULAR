@@ -2,13 +2,13 @@ package dao;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import connnection.manager.ConnectionManager;
 import model.Client;
 
 public class DaoClientMySql implements DaoClient {
@@ -16,11 +16,14 @@ public class DaoClientMySql implements DaoClient {
 	private Connection conn;
 
 	public DaoClientMySql() throws ClassNotFoundException, IOException, SQLException {
-		conn = ConnectionManager.getInstance().getConn();
+//		conn = ConnectionManager.getInstance().getConn();
+		
 	}
 
 	@Override
 	public List<Client> findAll() throws ClassNotFoundException, SQLException, IOException {
+		Class.forName("com.mysql.jdbc.Driver");
+		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/restaurant-cgi", "root", "root");
 		ArrayList<Client> listClient = new ArrayList<Client>();
 
 		String sql = "SELECT * FROM clients";
@@ -47,7 +50,8 @@ public class DaoClientMySql implements DaoClient {
 
 	@Override
 	public Client findById(String email) throws ClassNotFoundException, SQLException, IOException {
-
+		Class.forName("com.mysql.jdbc.Driver");
+		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/restaurant-cgi", "root", "root");
 		Client client = null;
 
 		String sql = "SELECT * FROM clients WHERE email = ? ";
@@ -67,6 +71,8 @@ public class DaoClientMySql implements DaoClient {
 
 	@Override
 	public void create(Client obj) throws ClassNotFoundException, SQLException, IOException {
+		Class.forName("com.mysql.jdbc.Driver");
+		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/restaurant-cgi", "root", "root");
 		String sql = "INSERT INTO clients(email, pass, nom, prenom, adresse, tel) VALUES (?,?,?,?,?,?)";
 
 		PreparedStatement ps = conn.prepareStatement(sql);
@@ -84,6 +90,8 @@ public class DaoClientMySql implements DaoClient {
 
 	@Override
 	public void update(Client obj) throws ClassNotFoundException, SQLException, IOException {
+		Class.forName("com.mysql.jdbc.Driver");
+		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/restaurant-cgi", "root", "root");
 		String sql = "UPDATE clients SET instructions = ? WHERE email = ?";
 
 		PreparedStatement ps = conn.prepareStatement(sql);
@@ -98,6 +106,8 @@ public class DaoClientMySql implements DaoClient {
 
 	@Override
 	public void delete(Client obj) throws ClassNotFoundException, SQLException, IOException {
+		Class.forName("com.mysql.jdbc.Driver");
+		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/restaurant-cgi", "root", "root");
 		String sql = "DELETE FROM clients WHERE email = ?";
 		PreparedStatement ps = conn.prepareStatement(sql);
 		ps.setString(1, obj.getEmail());
