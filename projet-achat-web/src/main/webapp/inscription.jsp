@@ -48,9 +48,8 @@
 					<input name="tel" class="form-control" placeholder="Enter tel">
 					<label for="tel" class="text-black">Téléphone</label>
 				</p>
-
-					<br> <input type="submit" value="Envoyer">
-				</p>
+					<br> <input type="submit" value="Envoyer" class="btn btn-dark">
+				
 			</div>
 		</div>
 	</form>

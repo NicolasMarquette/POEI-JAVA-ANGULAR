@@ -30,6 +30,7 @@
 						placeholder="Enter mdp">
 					<label for="mdp" class="text-black">Mot de passe</label>
 				</p>
+				<br> <input type="submit" value="Me connecter" class="btn btn-dark">
 			</div>
 		</div>
 	</form>
