@@ -1,6 +1,6 @@
 package model;
 
-import dao.Article;
+import model.Article;
 
 public class LigneArticle {
 
