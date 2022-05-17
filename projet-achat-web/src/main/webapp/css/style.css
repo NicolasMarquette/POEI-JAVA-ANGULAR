@@ -1,0 +1,107 @@
+@charset "UTF-8";
+
+.logo>img {
+	width: 15em;
+}
+
+.menuhr {
+	height: 50px;
+	background: url("../images/hr/hr-menu.png") repeat-x 0 0;
+	border: 0;
+}
+
+.nav-link {
+	color: #e9483e;
+	font-size: 2em;
+}
+
+.footer-distributed {
+	background: linear-gradient(#e9483e, white);
+	box-sizing: border-box;
+	width: 100%;
+	font: bold 16px sans-serif;
+	text-align: left;
+	padding: 50px 60px 40px;
+	color: white;
+}
+
+.btn-outline-info, .btn-outline-info:hover {
+	border-color: #e9483e !important;
+	color: #e9483e !important;
+}
+
+.btn-outline-info:hover {
+	border-color: #e9483e !important;
+	color: #e9483e !important;
+	background-color: white !important;
+}
+
+
+figure {
+	border-radius: 25px 25px 25px 25px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+figure img {
+	display: flex;
+	flex-flow: row nowrap;
+	width: 70%;
+	border-radius: 20px 20px 0px 0px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+figcaption {
+	text-align: left;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+figcaption {
+	font-weight: bold;
+	line-height: 1.2em;
+	font-size: 1em;
+}
+
+figcaption p {
+	font-weight: normal;
+	font-size: 0.9em;
+	line-height: 0.8em;
+}
+
+.plat-card-picture {
+	position: relative;
+	width: 100%;
+	height: 0;
+	padding-bottom: 46.25%;
+	overflow: hidden;
+}
+
+.plat-cards {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.plat-grid figure {
+	background-color: white;
+	border-radius: 25px 25px 25px 25px;
+	box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.3);
+	margin-top: 15px;
+	margin-bottom: 20px;
+	padding: 6px;
+	width: 29%;
+}
+
+.plat-card-picture img {
+	position: absolute;
+	object-fit: cover;
+	height: 100%;
+}

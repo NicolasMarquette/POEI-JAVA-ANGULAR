@@ -2,22 +2,24 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+
 <head>
+<meta charset="UTF-8">
+<title>accueil</title>
 <link rel="preconnect" href="https://fonts.gstatic.com/%22%3E" />
 <link
 	href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&display=swap"
 	rel="stylesheet" />
+<link href="./css/all.css" rel="stylesheet">
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet" />
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <link href="css/style.css" rel="stylesheet" />
-<meta charset="UTF-8">
-<title>Authentification</title>
 </head>
-<body>
 
+<body>
 	<div class="container">
 
 		<div class="container header">
@@ -41,34 +43,53 @@
 			<p class="menuhr"></p>
 		</div>
 
-		<div class="container">
-			<form action="servletAuthentification" method="post">
-				<div class="container" style="width: 800px">
-					<div class="label">
-						<fieldset>
-							<legend class="text-center">Informations
-								d'authentification</legend>
-							<div class="container border rounded">
-								<p class="form-floating mb-3 mt-3">
-									<input name="email" type="email" class="form-control"
-										placeholder="Enter email" value="example@example.com" required>
-									<label for="email" class="text-black">Email</label>
-								</p>
-								<p class="form-floating mb-3 mt-3">
-									<input name="mdp" type="password" class="form-control"
-										placeholder="Enter mdp"> <label for="mdp"
-										class="text-black">Mot de passe</label>
-								</p>
-							</div>
-							<br> <input type="submit" value="Me connecter"
-								class="btn btn-dark">
-							<button onclick="" class="btn btn-dark">Annuler</button>
-						</fieldset>
-					</div>
-				</div>
-			</form>
-		</div>
 
+		<section>
+			<div class="container mt-5">
+				<!-- Carousel -->
+				<div id="demo" class="carousel slide carousel-fade"
+					data-bs-ride="carousel">
+
+					<!-- Indicators/dots -->
+					<div class="carousel-indicators">
+						<button type="button" data-bs-target="#demo" data-bs-slide-to="0"
+							class="active"></button>
+						<button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+						<button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+					</div>
+
+					<!-- The slideshow/carousel -->
+					<div class="carousel-inner">
+						<div class="carousel-item active">
+							<img src="images/carousel/carousel1.jpg" alt="sushi1"
+								class="img-fluid d-block rounded w-100">
+						</div>
+						<div class="carousel-item">
+							<img src="images/carousel/carousel2.jpg" alt="sushi2"
+								class="d-block rounded w-100">
+						</div>
+						<div class="carousel-item">
+							<img src="images/carousel/carousel3.jpg" alt="sushi3"
+								class="img-fluid d-block rounded w-100">
+						</div>
+					</div>
+
+					<!-- Left and right controls/icons -->
+					<button class="carousel-control-prev" type="button"
+						data-bs-target="#demo" data-bs-slide="prev">
+						<span class="carousel-control-prev-icon"></span>
+					</button>
+					<button class="carousel-control-next" type="button"
+						data-bs-target="#demo" data-bs-slide="next">
+						<span class="carousel-control-next-icon"></span>
+					</button>
+				</div>
+			</div>
+		</section>
+
+		<div class="container">
+			<h2>Livraison à domicile de plats japonais</h2>
+		</div>
 
 		<div class="container footer">
 			<footer class="footer-distributed d-flex justify-content-between">
@@ -99,4 +120,5 @@
 	</div>
 
 </body>
+
 </html>
