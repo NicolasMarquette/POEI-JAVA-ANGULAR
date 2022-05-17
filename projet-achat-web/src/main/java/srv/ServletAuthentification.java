@@ -2,15 +2,18 @@ package srv;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.DaoClientMySql;
 import model.Client;
+import model.LigneArticle;
 import verification.VerificationClient;
 
 /**
@@ -32,6 +35,7 @@ public class ServletAuthentification extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession x = request.getSession();	
 		VerificationClient verificationClient = new VerificationClient();
 		Client client;
 		boolean verifLogin;
@@ -46,13 +50,16 @@ public class ServletAuthentification extends HttpServlet {
 			if(verifLogin) {
 				
 				client = new DaoClientMySql().findById(email);
-				request.setAttribute("client", client);
-				res+= "commande";
+				x.setAttribute("client", client);
+				res+= "choixArticles";
 				}
 			else
 				res="authentification";
 			res+=".jsp";
 			request.getRequestDispatcher(res).forward(request, response);
+			
+			HashMap<Integer, LigneArticle> articles = new HashMap<Integer, LigneArticle	>();
+			x.setAttribute("panier", articles);
 		
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
