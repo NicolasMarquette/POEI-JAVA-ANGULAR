@@ -1,21 +1,23 @@
-package dao;
+package model;
 
 public class Article {
 
-	private int idArticle; 
+	private int idArticle;
 	private String nom;
 	private String description;
 	private int tarif;
-	
-	
+	private String image;
+
 	public Article() {
 	}
 
-	public Article(int idArticle, String nom, String description, int tarif) {
+	public Article(int idArticle, String nom, String description, int tarif, String image) {
+		super();
 		this.idArticle = idArticle;
 		this.nom = nom;
 		this.description = description;
 		this.tarif = tarif;
+		this.image = image;
 	}
 
 	public int getIdArticle() {
@@ -50,12 +52,18 @@ public class Article {
 		this.tarif = tarif;
 	}
 
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
 	@Override
 	public String toString() {
 		return "Article [idArticle=" + idArticle + ", nom=" + nom + ", description=" + description + ", tarif=" + tarif
-				+ "]";
+				+ ", image=" + image + "]";
 	}
-	
-	
-	
+
 }
