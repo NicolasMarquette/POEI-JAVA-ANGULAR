@@ -18,8 +18,11 @@
 <body>
 <h1>Veuillez vous connecter <br></h1>
 <form action="servlet1" method="post">
-		<div class="container">
+		<div class="container" style = "width : 800px">
 			<div class="label">
+			<fieldset>
+			 <legend class="text-center">Informations d'authentification</legend>
+			 <div class="container border rounded">
 				<p class="form-floating mb-3 mt-3">
 					<input name="email" type="email" class="form-control"
 						placeholder="Enter email" value="example@example.com" required>
@@ -30,7 +33,10 @@
 						placeholder="Enter mdp">
 					<label for="mdp" class="text-black">Mot de passe</label>
 				</p>
+				</div>
 				<br> <input type="submit" value="Me connecter" class="btn btn-dark">
+				<button onclick="" class="btn btn-dark"> Annuler </button>
+			</fieldset>
 			</div>
 		</div>
 	</form>
