@@ -17,7 +17,7 @@
 </head>
 <body>
 <h1>Veuillez vous connecter <br></h1>
-<form action="servlet1" method="post">
+<form action="servletAuthentification" method="post">
 		<div class="container" style = "width : 800px">
 			<div class="label">
 			<fieldset>

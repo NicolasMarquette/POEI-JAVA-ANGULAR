@@ -68,6 +68,27 @@ public class DaoClientMySql implements DaoClient {
 		rs.close();
 		return client;
 	}
+	
+	public Client findByEmailMdp(String email, String mdp) throws ClassNotFoundException, SQLException, IOException {
+		Class.forName("com.mysql.jdbc.Driver");
+		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/restaurant-cgi", "root", "root");
+		Client client = null;
+
+		String sql = "SELECT * FROM clients WHERE email = ? AND pass = ?";
+
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setString(1, email);
+		ps.setString(2, mdp);
+		ResultSet rs = ps.executeQuery();
+
+		if (rs.next()) {
+			client = new Client(rs.getString("email"), rs.getString("pass"), rs.getString("nom"),
+					rs.getString("prenom"), rs.getString("adresse"), rs.getString("tel"));
+		}
+		ps.close();
+		rs.close();
+		return client;
+	}
 
 	@Override
 	public void create(Client obj) throws ClassNotFoundException, SQLException, IOException {
