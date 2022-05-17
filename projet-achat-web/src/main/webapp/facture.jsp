@@ -41,7 +41,10 @@
 			<p class="menuhr"></p>
 		</div>
 
-<i class="fas fa-facebook"></i><i class="fas fa-dog"></i>
+<i class="fab fa-facebook"></i>
+
+<i class="fab fa-instagram"></i><i class="fab fa-twitter"></i><i class="fab fa-linkedin"></i>
+
 		<section class="factureClient">
 
 			<table border="1" width="100%" cellspacing="6" cellpadding="10">
