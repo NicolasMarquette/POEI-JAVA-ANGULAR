@@ -69,6 +69,7 @@ public class DaoClientMySql implements DaoClient {
 		return client;
 	}
 	
+	@Override
 	public Client findByEmailMdp(String email, String mdp) throws ClassNotFoundException, SQLException, IOException {
 		Class.forName("com.mysql.jdbc.Driver");
 		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/restaurant-cgi", "root", "root");
