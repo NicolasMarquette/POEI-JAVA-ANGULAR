@@ -27,19 +27,17 @@ public class DaoCommandeMySql implements DaoCommande {
 	public void create(Commande obj) throws ClassNotFoundException, SQLException, IOException {
 		Class.forName("com.mysql.jdbc.Driver");
 		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/restaurant-cgi", "root", "root");
-		String sql = "INSERT INTO commandes(id, emailClient, date, prixTot, infos) VALUES (?,?,?,?,?)";
+		String sql = "INSERT INTO commandes(emailClient, date, prixTot, infos) VALUES (?,?,?,?)";
 
 		PreparedStatement ps = conn.prepareStatement(sql);
-		ps.setInt(1, obj.getId());
-		ps.setString(2, obj.getEmailClient());
-		ps.setString(3, obj.getDate());
-		ps.setInt(4, obj.getPrixTot());
-		ps.setString(5, obj.getInfos());
+		ps.setString(1, obj.getEmailClient());
+		ps.setString(2, obj.getDate());
+		ps.setInt(3, obj.getPrixTot());
+		ps.setString(4, obj.getInfos());
 
 		ps.executeUpdate();
 
-		ps.close();
-
+		conn.close();
 	}
 
 	@Override

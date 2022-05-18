@@ -19,6 +19,14 @@ public class Commande {
 		this.infos = infos;
 	}
 
+	public Commande(String emailClient, String date, int prixTot, String infos) {
+		super();
+		this.emailClient = emailClient;
+		this.date = date;
+		this.prixTot = prixTot;
+		this.infos = infos;
+	}
+
 	public int getId() {
 		return id;
 	}

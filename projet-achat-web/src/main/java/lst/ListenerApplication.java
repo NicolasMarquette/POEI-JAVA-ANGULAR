@@ -41,6 +41,9 @@ public class ListenerApplication implements ServletContextListener {
 			ArrayList<Article> listeArticles = (ArrayList<Article>) new DaoArticleMySql().findAll();
 
 			sce.getServletContext().setAttribute("articles", listeArticles);
+			sce.getServletContext().setAttribute("hidden_deco", "hidden");
+			sce.getServletContext().setAttribute("hidden_auth", "");
+			
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

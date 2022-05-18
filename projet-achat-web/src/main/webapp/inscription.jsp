@@ -33,10 +33,10 @@
 							href="accueil.jsp">Itadakimasu</a></li> -->
 						<li class="nav-item p-2 flex-fill"><a class="nav-link"
 							href="carte.jsp">Notre carte</a></li>
-						<li class="nav-item p-2 flex-fill"><a class="nav-link"
-							href="authentification.jsp">Authentification</a></li>
-						<li class="nav-item p-2 flex-fill"><a class="nav-link"
-							href="inscription.jsp">Inscription</a></li>
+						<li class="nav-item p-2 flex-fill" ${hidden_auth}><a
+							class="nav-link" href="authentification.jsp">Authentification</a></li>
+						<li class="nav-item p-2 flex-fill"><a
+							class="nav-link" href="inscription.jsp">Inscription</a></li>
 					</ul>
 				</nav>
 			</header>
@@ -52,7 +52,7 @@
 							<div class="container border rounded">
 								<p class="form-floating mb-3 mt-3">
 									<input name="email" type="email" class="form-control"
-										placeholder="Enter email" value="example@example.com" required>
+										placeholder="Enter email" value="${email_client}" required>
 									<label for="email" class="text-black">Email</label>
 								</p>
 								<p class="form-floating mb-3 mt-3">
@@ -81,7 +81,7 @@
 							</div>
 							<br> <input type="submit" value="Envoyer"
 								class="btn btn-dark">
-							<button onclick="" class="btn btn-dark">Annuler</button>
+							<button onclick="accueil.jsp" class="btn btn-dark">Annuler</button>
 						</fieldset>
 					</div>
 				</div>

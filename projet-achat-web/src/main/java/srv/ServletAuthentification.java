@@ -3,12 +3,14 @@ package srv;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpSessionContext;
 
 import dao.DaoClientMySql;
 import model.Client;
@@ -36,12 +38,13 @@ public class ServletAuthentification extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
+		ServletContext app = request.getServletContext();
 		HttpSession x = request.getSession();
 		VerificationClient verificationClient = new VerificationClient();
 		Client client;
 		boolean verifLogin;
 
-		DaoClientMySql daoClientMySql;
 		String email = request.getParameter("email");
 		String mdp = request.getParameter("mdp");
 		String res = "WEB-INF/";
@@ -53,14 +56,18 @@ public class ServletAuthentification extends HttpServlet {
 				client = new DaoClientMySql().findById(email);
 				x.setAttribute("client", client);
 				res += "choixArticles";
-			} else
-				res = "authentification";
+
+				Panier articles = new Panier();
+				x.setAttribute("panier", articles);
+				app.setAttribute("hidden_deco", "");
+				app.setAttribute("hidden_auth", "hidden");
+
+			} else {
+				res = "inscription";
+				x.setAttribute("email_client", email);
+			}
 			res += ".jsp";
 			request.getRequestDispatcher(res).forward(request, response);
-
-			//HashMap<Integer, LigneArticle> articles = new HashMap<Integer, LigneArticle>();
-			Panier articles = new Panier();
-			x.setAttribute("panier", articles);
 
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -72,8 +79,6 @@ public class ServletAuthentification extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**

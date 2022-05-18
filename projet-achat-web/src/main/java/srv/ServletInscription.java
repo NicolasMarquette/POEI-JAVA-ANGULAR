@@ -31,6 +31,9 @@ public class ServletInscription extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		request.setCharacterEncoding("UTF-8");
+		
 		DaoClientMySql daoClientMySql;
 				
 		String email = request.getParameter("email");
@@ -56,8 +59,7 @@ public class ServletInscription extends HttpServlet {
 			e.printStackTrace();
 		}
 		request.setAttribute("client", client);
-		
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.getRequestDispatcher("authentification.jsp").forward(request, response);
 	}
 
 	/**

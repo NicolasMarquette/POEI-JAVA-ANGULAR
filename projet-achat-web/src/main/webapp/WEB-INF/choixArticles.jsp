@@ -36,15 +36,14 @@
 						<li class="nav-item p-2 flex-fill"><a class="nav-link"
 							href="carte.jsp">Notre carte</a></li>
 						<li class="nav-item p-2 flex-fill"><a class="nav-link"
-							href="authentification.jsp">Authentification</a></li>
+							href="servletRetourPanier">Ma commande</a></li>
 						<li class="nav-item p-2 flex-fill"><a class="nav-link"
-							href="inscription.jsp">Inscription</a></li>
+							href="servletDeconnexion">Deconnection</a></li>
 					</ul>
 				</nav>
 			</header>
 			<p class="menuhr"></p>
 		</div>
-
 		<section>
 			<h1>
 				La commande de

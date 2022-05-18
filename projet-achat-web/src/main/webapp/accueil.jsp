@@ -14,7 +14,7 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <link href="css/style.css" rel="stylesheet" />
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 </head>
 
 <body>
@@ -34,10 +34,14 @@
 							href="accueil.jsp">Itadakimasu</a></li> -->
 						<li class="nav-item p-2 flex-fill"><a class="nav-link"
 							href="carte.jsp">Notre carte</a></li>
-						<li class="nav-item p-2 flex-fill"><a class="nav-link"
-							href="authentification.jsp">Authentification</a></li>
-						<li class="nav-item p-2 flex-fill"><a class="nav-link"
-							href="inscription.jsp">Inscription</a></li>
+						<li class="nav-item p-2 flex-fill" ${hidden_auth}><a
+							class="nav-link" href="authentification.jsp">Authentification</a></li>
+						<li class="nav-item p-2 flex-fill" ${hidden_auth}><a
+							class="nav-link" href="inscription.jsp">Inscription</a></li>
+						<li class="nav-item p-2 flex-fill" ${hidden_deco}><a
+							class="nav-link" href="servletRetourPanier">Ma commande</a></li>
+						<li class="nav-item p-2 flex-fill" ${hidden_deco}><a
+							class="nav-link" href="servletDeconnexion">Deconnection</a></li>
 					</ul>
 				</nav>
 			</header>

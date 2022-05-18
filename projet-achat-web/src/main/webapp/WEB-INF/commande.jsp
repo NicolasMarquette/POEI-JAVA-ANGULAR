@@ -31,17 +31,17 @@
 					<ul class="nav nav-pills nav-justified">
 						<!-- <li class="nav-item p-2 flex-fill"><a class="nav-link"
 							href="accueil.jsp">Itadakimasu</a></li> -->
-						<li class="nav-item p-2 flex-fill"><a class="nav-link"
-							href="carte.jsp">Notre carte</a></li>
-						<li class="nav-item p-2 flex-fill"><a class="nav-link"
-							href="authentification.jsp">Authentification</a></li>
-						<li class="nav-item p-2 flex-fill"><a class="nav-link"
-							href="inscription.jsp">Inscription</a></li>
-					</ul>
-				</nav>
-			</header>
-			<p class="menuhr"></p>
-		</div>
+					<li class="nav-item p-2 flex-fill"><a class="nav-link"
+						href="carte.jsp">Notre carte</a></li>
+					<li class="nav-item p-2 flex-fill"><a
+						class="nav-link" href="servletRetourPanier">Ma commande</a></li>
+					<li class="nav-item p-2 flex-fill"><a class="nav-link"
+						href="servletDeconnexion">Deconnection</a></li>
+				</ul>
+			</nav>
+		</header>
+		<p class="menuhr"></p>
+	</div>
 
 		<p class="display-5 text-center">
 			Félicitation
