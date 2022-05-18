@@ -48,7 +48,7 @@
 			<c:out value="${client.nom}"></c:out>
 			. Votre commande a bien été validée.<br> Montant total de la
 			commande :
-			<c:out value="${sessionScope.panier.total}"></c:out>
+			<c:out value="${sessionScope.total}"></c:out>
 			€.<br> Adresse de livraison :
 			<c:out value="${client.adresse}"></c:out>
 			<br> Votre commande sera livrée d'ici 30 minutes.
