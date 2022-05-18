@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
-.logo>img {
-	width: 15em;
+.logo>a>img{
+	width: 10em;
 }
 
 .menuhr {

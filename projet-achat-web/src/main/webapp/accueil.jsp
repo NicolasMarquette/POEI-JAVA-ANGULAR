@@ -25,12 +25,15 @@
 		<div class="container header">
 			<header class="d-flex">
 				<h1 class="logo navbar-brand">
-					<img alt="sushi logo" src="images/logo/sushi_logo.png" />
+					<!-- Pas oublier de le copier dans les autres pages -->
+					<a class="logo" href="accueil.jsp"><img alt="sushi logo"
+						src="images/logo/sushi_logo.png"
+						style="width: 300px; height: 250px;" /></a>
 				</h1>
 				<nav class="d-flex align-self-center">
 					<ul class="nav nav-pills nav-justified">
-						<li class="nav-item p-2 flex-fill"><a class="nav-link"
-							href="accueil.jsp">Itadakimasu</a></li>
+						<!-- <li class="nav-item p-2 flex-fill"><a class="nav-link"
+							href="accueil.jsp">Itadakimasu</a></li> -->
 						<li class="nav-item p-2 flex-fill"><a class="nav-link"
 							href="carte.jsp">Notre carte</a></li>
 						<li class="nav-item p-2 flex-fill"><a class="nav-link"
@@ -43,6 +46,10 @@
 			<p class="menuhr"></p>
 		</div>
 
+		<div class="border rounded">
+			<p class="display-4 text-center">Votre restaurant japonais à
+				Bordeaux</p>
+		</div>
 
 		<section>
 			<div class="container mt-5">
@@ -62,15 +69,18 @@
 					<div class="carousel-inner">
 						<div class="carousel-item active">
 							<img src="images/carousel/carousel1.jpg" alt="sushi1"
-								class="img-fluid d-block rounded w-100">
+								class="img-fluid d-block rounded w-100"
+								style="width: 450px; height: 700px;">
 						</div>
 						<div class="carousel-item">
 							<img src="images/carousel/carousel2.jpg" alt="sushi2"
-								class="d-block rounded w-100">
+								class="d-block rounded w-100"
+								style="width: 450px; height: 700px;">
 						</div>
 						<div class="carousel-item">
 							<img src="images/carousel/carousel3.jpg" alt="sushi3"
-								class="img-fluid d-block rounded w-100">
+								class="img-fluid d-block rounded w-100"
+								style="width: 450px; height: 700px;">
 						</div>
 					</div>
 
@@ -86,18 +96,23 @@
 				</div>
 			</div>
 		</section>
-
+		<br>
 		<div class="container">
-			<h2>Livraison à domicile de plats japonais</h2>
+			<p class=" text-center" style="font-family:Trebuchet MS;font-size:200%">Livraison à domicile de plats
+				japonais</p>
+			<p class=" text-center" style="font-family:Trebuchet MS;font-size:200%">Préparation maison, produits
+				frais</p>
+			<br>
 		</div>
 
 		<div class="container footer">
 			<footer class="footer-distributed d-flex justify-content-between">
 				<div class="footer-left">
 					<p class="footer-company-name">Itadakimasu © 2022</p>
-					<a href="#"><i class="fa-brands fa-facebook"></i></a>
+					
 				</div>
-
+					<i class="fab fa-instagram"></i><i class="fab fa-twitter"></i>
+					<i class="fab fa-linkedin"></i>
 				<div class="footer-right">
 
 					<p>Contact Us</p>
