@@ -49,7 +49,8 @@
 						name="article">
 						<c:forEach var="a" items="${articles }">
 							<c:set var="nom" value="${a.nom}"></c:set>
-							<option value="${nom}" />${nom}</option>
+							<c:set var="id" value="${a.idArticle}"></c:set>
+							<option value="${id}" />${nom}</option>
 						</c:forEach>
 					</select>
 

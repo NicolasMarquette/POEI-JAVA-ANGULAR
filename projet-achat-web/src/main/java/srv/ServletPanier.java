@@ -43,28 +43,28 @@ public class ServletPanier extends HttpServlet {
 		ServletContext app = request.getServletContext();
 		ArrayList<Article> listArticles = (ArrayList<Article>) app.getAttribute("articles");
 
-		String nom = request.getParameter("article");
+		int idArticle = Integer.parseInt(request.getParameter("article"));
 		int quantite = Integer.parseInt(request.getParameter("quantite"));
-		Article article = listArticles.stream().filter(a -> a.getNom().equals(nom)).findFirst().orElse(null);
-		int idarticle = article.getIdArticle();
+		Article article = listArticles.stream().filter(a -> a.getIdArticle() == idArticle).findFirst().orElse(null);
 
 		HashMap<Integer, LigneArticle> articles = (HashMap<Integer, LigneArticle>) x.getAttribute("panier");
 
 		System.out.println("articles : " + articles);
 
-		if (!articles.containsKey(idarticle)) {
-			LigneArticle ligne = new LigneArticle(quantite, article);
-			articles.put(idarticle, ligne);
+		if (!articles.containsKey(idArticle)) {
+			articles.put(idArticle, new LigneArticle(quantite, article));
 			System.out.println("nouvel article : " + articles);
 		} else {
-			LigneArticle oldLigne = articles.get(idarticle);
+			LigneArticle oldLigne = articles.get(idArticle);
 			int oldQuantite = oldLigne.getQuantite();
 			LigneArticle newLigne = new LigneArticle(oldQuantite + quantite, article);
-			articles.replace(idarticle, newLigne);
+			articles.replace(idArticle, newLigne);
 			System.out.println("ajout quantite article : " + articles);
 		}
 
-		System.out.println("nom : " + nom + " - quantité : " + quantite + " - idarticle : " + idarticle);
+		System.out.println("id : " + idArticle + " - quantité : " + quantite + " - idarticle : " + idArticle);
+		
+		x.setAttribute("panier", articles);
 		request.getRequestDispatcher("WEB-INF/choixArticles.jsp").forward(request, response);
 	}
 
