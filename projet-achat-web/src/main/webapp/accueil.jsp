@@ -96,20 +96,62 @@
 		</section>
 		<br>
 		<div class="container">
-			<p class=" text-center" style="font-family:Trebuchet MS;font-size:200%">Livraison à domicile de plats
-				japonais</p>
-			<p class=" text-center" style="font-family:Trebuchet MS;font-size:200%"><i class="fas fa-heart"></i> Préparation maison, produits
-				frais <i class="fas fa-heart"></i></p>
+			<p class=" text-center"
+				style="font-family: Trebuchet MS; font-size: 200%">Livraison à
+				domicile de plats japonais</p>
+			<p class=" text-center"
+				style="font-family: Trebuchet MS; font-size: 200%">
+				<i class="fas fa-heart" style="color: #e9483e;"></i> Préparation
+				maison, produits frais <i class="fas fa-heart"
+					style="color: #e9483e;"></i>
+			</p>
 			<br>
 		</div>
 
 		<div class="container footer">
 			<footer class="footer-distributed d-flex justify-content-between">
-				<div class="footer-left">
-					<p class="footer-company-name">Itadakimasu © 2022</p>
-					
+
+				<div class="container bloc-sm">
+					<div class="row">
+						<div class="col-sm-12">
+							<p class="text-center white footer-p">
+								<br /> <i class="fas fa-heart"></i> Itadakimasu © 2022
+							</p>
+							<p class="text-center">Copyright Sarah, Nicolas, Dimitri</p>
+							<nav class="row row-no-gutters social"
+								aria-label="navigation des réseaux sociaux">
+								<div class="col-sm-6">
+									<div class="text-center">
+										<a class="social" aria-label="Twitter"> <span
+											class="fab fa-twitter icon-md 2x"></span> <span
+											class="footer-text icon-md">Twitter</span></a>
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="text-center">
+										<a class="social" aria-label="Facebook"> <span
+											class="fab fa-facebook icon-md"></span> <span
+											class="footer-text icon-md">Facebook</span></a>
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="text-center">
+										<a class="social" aria-label="Linkedin"> <span
+											class="fab fa-linkedin icon-md"></span> <span
+											class="footer-text icon-md">Linkedin</span></a>
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="text-center">
+										<a class="social" aria-label="Instagram"> <span
+											class="fab fa-instagram icon-md"></span> <span
+											class="footer-text icon-md">Instagram</span></a>
+									</div>
+								</div>
+							</nav>
+						</div>
+					</div>
 				</div>
-					
 				<div class="footer-right">
 
 					<p>Contact Us</p>
@@ -128,9 +170,7 @@
 				</div>
 			</footer>
 		</div>
-
 	</div>
-
 </body>
 
 </html>

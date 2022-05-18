@@ -44,12 +44,18 @@
 			</header>
 			<p class="menuhr"></p>
 		</div>
-		
+
 		<section>
-		<h1>La commande de <c:out value="${client.nom}"></c:out> (montant panier: <c:out value="${sessionScope.panier.total}"></c:out>€)</h1>
-		
+			<h1>
+				La commande de
+				<c:out value="${client.nom}"></c:out>
+				(montant panier:
+				<c:out value="${sessionScope.panier.total}"></c:out>
+				€)
+			</h1>
+
 		</section>
-		
+
 
 		<div class="container">
 			<form action="servletPanier" method="post">
@@ -72,6 +78,43 @@
 				<br> <input type="submit" value="Ajouter au panier"
 					class="btn btn-dark">
 			</form>
+
+			<section class="factureClient">
+
+				<table border="1" width="100%" cellspacing="6" cellpadding="10">
+
+					<caption>Voici le récapitulatif de votre commande</caption>
+					<thead>
+						<tr>
+							<th width="20%">Articles</th>
+							<th width="20%">Quantité</th>
+							<th width="40%">Prix total</th>
+						</tr>
+					</thead>
+					<tfoot>
+						<tr>
+							<th width="50%">Total</th>
+							<th width="50%">0</th>
+						</tr>
+					</tfoot>
+					<tbody>
+						<tr>
+							<td width="50%">test1</td>
+							<td width="50%">26</td>
+						</tr>
+						<tr>
+							<td width="50%">test2</td>
+							<td width="50%">32</td>
+						</tr>
+						<tr>
+							<td width="50%">test3</td>
+							<td width="50%">12</td>
+						</tr>
+					</tbody>
+				</table>
+
+			</section>
+
 
 		</div>
 
@@ -110,33 +153,49 @@
 		</section>
 
 
-		<div class="container footer">
-			<footer class="footer-distributed d-flex justify-content-between">
-				<div class="footer-left">
-					<p class="footer-company-name">Itadakimasu © 2022</p>
-					<a href="#"><i class="fa-brands fa-facebook"></i></a>
+		<div class="container bloc-sm">
+			<div class="row">
+				<div class="col-sm-12">
+					<p class="text-center white footer-p">
+						<br /> <i class="fas fa-heart"></i> Itadakimasu © 2022
+					</p>
+					<p class="text-center">Copyright Sarah, Nicolas, Dimitri</p>
+					<nav class="row row-no-gutters social"
+						aria-label="navigation des réseaux sociaux">
+						<div class="col-sm-6">
+							<div class="text-center">
+								<a class="social" aria-label="Twitter"> <span
+									class="fab fa-twitter icon-md 2x"></span> <span
+									class="footer-text icon-md">Twitter</span></a>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="text-center">
+								<a class="social" aria-label="Facebook"> <span
+									class="fab fa-facebook icon-md"></span> <span
+									class="footer-text icon-md">Facebook</span></a>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="text-center">
+								<a class="social" aria-label="Linkedin"> <span
+									class="fab fa-linkedin icon-md"></span> <span
+									class="footer-text icon-md">Linkedin</span></a>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="text-center">
+								<a class="social" aria-label="Instagram"> <span
+									class="fab fa-instagram icon-md"></span> <span
+									class="footer-text icon-md">Instagram</span></a>
+							</div>
+						</div>
+					</nav>
 				</div>
-
-				<div class="footer-right">
-
-					<p>Contact Us</p>
-
-					<form action="#" method="post">
-
-						<p class="form-floating mb-3 mt-3">
-							<input type="text" name="email" placeholder="Email">
-						</p>
-						<p class="form-floating mb-3 mt-3">
-							<textarea name="message" placeholder="Message"></textarea>
-						</p>
-						<button type="button" class="btn btn-outline-info btn-sm">Send</button>
-
-					</form>
-				</div>
-			</footer>
+			</div>
 		</div>
 
-		<div></div>
+
 
 
 	</div>

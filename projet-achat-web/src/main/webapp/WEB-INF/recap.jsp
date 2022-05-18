@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,8 +17,8 @@
 <title>Récapitulatif commande</title>
 </head>
 <body>
-<div class="container">
-<div class="container header">
+	<div class="container">
+		<div class="container header">
 			<header class="d-flex">
 				<h1 class="logo navbar-brand">
 					<!-- Pas oublier de le copier dans les autres pages -->
@@ -42,12 +42,18 @@
 			<p class="menuhr"></p>
 		</div>
 
-<section>
-		<h1>La commande de <c:out value="${client.nom}"></c:out> (montant panier: <c:out value="${sessionScope.panier.total}"></c:out>€)</h1>
-		
+		<section>
+			<h1>
+				La commande de
+				<c:out value="${client.nom}"></c:out>
+				(montant panier:
+				<c:out value="${sessionScope.panier.total}"></c:out>
+				€)
+			</h1>
+
 		</section>
 
-<section class="factureClient">
+		<section class="factureClient">
 
 			<table border="1" width="100%" cellspacing="6" cellpadding="10">
 
@@ -76,12 +82,54 @@
 				</tbody>
 			</table>
 			<form action="servletCommande" method="post">
-				<input type="submit" value="Valider la commande" class="btn btn-dark">
+				<input type="submit" value="Valider la commande"
+					class="btn btn-dark">
 			</form>
 			<form action="servletRetourPanier" method="post">
 				<input type="submit" value="Retour au panier" class="btn btn-dark">
 			</form>
 		</section>
-</div>
+	</div>
+	<div class="container bloc-sm">
+		<div class="row">
+			<div class="col-sm-12">
+				<p class="text-center white footer-p">
+					<br /> <i class="fas fa-heart"></i> Itadakimasu © 2022
+				</p>
+				<p class="text-center">Copyright Sarah, Nicolas, Dimitri</p>
+				<nav class="row row-no-gutters social"
+					aria-label="navigation des réseaux sociaux">
+					<div class="col-sm-6">
+						<div class="text-center">
+							<a class="social" aria-label="Twitter"> <span
+								class="fab fa-twitter icon-md 2x"></span> <span
+								class="footer-text icon-md">Twitter</span></a>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="text-center">
+							<a class="social" aria-label="Facebook"> <span
+								class="fab fa-facebook icon-md"></span> <span
+								class="footer-text icon-md">Facebook</span></a>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="text-center">
+							<a class="social" aria-label="Linkedin"> <span
+								class="fab fa-linkedin icon-md"></span> <span
+								class="footer-text icon-md">Linkedin</span></a>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="text-center">
+							<a class="social" aria-label="Instagram"> <span
+								class="fab fa-instagram icon-md"></span> <span
+								class="footer-text icon-md">Instagram</span></a>
+						</div>
+					</div>
+				</nav>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

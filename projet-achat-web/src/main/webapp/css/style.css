@@ -105,3 +105,9 @@ figcaption p {
 	object-fit: cover;
 	height: 100%;
 }
+
+footer a {
+	color: white;
+	text-decoration: none;
+	font-size: 2em;
+}
