@@ -2,7 +2,6 @@ package srv;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -13,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.Article;
-import model.LigneArticle;
+import model.Panier;
 
 /**
  * Servlet implementation class ServletPanier
@@ -36,7 +35,7 @@ public class ServletPanier extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		request.setCharacterEncoding("UTF-8");
 
 		HttpSession x = request.getSession();
@@ -47,24 +46,10 @@ public class ServletPanier extends HttpServlet {
 		int quantite = Integer.parseInt(request.getParameter("quantite"));
 		Article article = listArticles.stream().filter(a -> a.getIdArticle() == idArticle).findFirst().orElse(null);
 
-		HashMap<Integer, LigneArticle> articles = (HashMap<Integer, LigneArticle>) x.getAttribute("panier");
-
-		System.out.println("articles : " + articles);
-
-		if (!articles.containsKey(idArticle)) {
-			articles.put(idArticle, new LigneArticle(quantite, article));
-			System.out.println("nouvel article : " + articles);
-		} else {
-			LigneArticle oldLigne = articles.get(idArticle);
-			int oldQuantite = oldLigne.getQuantite();
-			LigneArticle newLigne = new LigneArticle(oldQuantite + quantite, article);
-			articles.replace(idArticle, newLigne);
-			System.out.println("ajout quantite article : " + articles);
-		}
-
-		System.out.println("id : " + idArticle + " - quantité : " + quantite + " - idarticle : " + idArticle);
-		
+		Panier articles = (Panier) x.getAttribute("panier");
+		articles.setPanier(idArticle, article, quantite);
 		x.setAttribute("panier", articles);
+		
 		request.getRequestDispatcher("WEB-INF/choixArticles.jsp").forward(request, response);
 	}
 

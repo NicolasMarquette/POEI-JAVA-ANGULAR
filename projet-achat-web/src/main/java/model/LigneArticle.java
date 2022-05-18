@@ -1,7 +1,5 @@
 package model;
 
-import model.Article;
-
 public class LigneArticle {
 
 	private int quantite;
