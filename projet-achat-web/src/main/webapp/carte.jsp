@@ -16,7 +16,7 @@
 <link href="css/style.css" rel="stylesheet" />
 
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>La carte</title>
 </head>
 <body>
 
@@ -46,6 +46,11 @@
 			<p class="menuhr"></p>
 		</div>
 
+<div>
+<p class="text-center" style="font-size:50px;;font-family:">La carte d'Itadakimasu</p>
+<img class = "mx-auto d-block" alt="separateur menu" src="images/sep.png" style="width: 400px;"/>
+<br>
+</div>
 
 		<div class="plat-grid">
 			<div class="plat-cards">
