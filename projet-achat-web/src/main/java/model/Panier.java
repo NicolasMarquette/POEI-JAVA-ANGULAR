@@ -5,6 +5,7 @@ import java.util.HashMap;
 public class Panier {
 
 	private HashMap<Integer, LigneArticle> panier;
+	private int total;
 
 	public Panier() {
 		panier = new HashMap<Integer, LigneArticle>();
@@ -25,6 +26,8 @@ public class Panier {
 
 	public void setPanier(int id, Article article, int quantite) {
 		
+		System.out.println("Total: " + total);
+		
 		if (!panier.containsKey(id)) {
 			panier.put(id, new LigneArticle(quantite, article));
 			System.out.println("nouvel article : " + panier);
@@ -34,6 +37,20 @@ public class Panier {
 			panier.replace(id, new LigneArticle(oldQuantite + quantite, article));
 			System.out.println("ajout quantite article : " + panier);
 		}
+		setTotal();
+		System.out.println("Total: " + total);
 	}
+
+	public int getTotal() {
+		return total;
+	}
+
+	private void setTotal() {
+		this.total = panier.values().stream()
+				  .map(x -> x.getSomme())
+				  .reduce(0, Integer::sum);;
+	}
+	
+	
 
 }

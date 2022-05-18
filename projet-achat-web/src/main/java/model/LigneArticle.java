@@ -4,7 +4,7 @@ public class LigneArticle {
 
 	private int quantite;
 	private Article article;
-	private double somme;
+	private int somme;
 
 	public LigneArticle(int quantite, Article article) {
 		this.quantite = quantite;
@@ -12,12 +12,12 @@ public class LigneArticle {
 		sommePrix();
 	}
 
-	private double sommePrix() {
+	private int sommePrix() {
 		somme = quantite * article.getTarif();
 		return somme;
 	}
 
-	public double getSomme() {
+	public int getSomme() {
 		return somme;
 	}
 
@@ -37,7 +37,7 @@ public class LigneArticle {
 		this.article = article;
 	}
 
-	public void setSomme(double somme) {
+	public void setSomme(int somme) {
 		this.somme = somme;
 	}
 

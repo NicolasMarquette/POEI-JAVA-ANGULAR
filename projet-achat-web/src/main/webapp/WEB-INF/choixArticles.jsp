@@ -41,13 +41,19 @@
 			</header>
 			<p class="menuhr"></p>
 		</div>
+		
+		<section>
+		<h1>La commande de <c:out value="${client.nom}"></c:out> (montant panier: <c:out value="${sessionScope.panier.total}"></c:out>€)</h1>
+		
+		</section>
+		
 
 		<div class="container">
 			<form action="servletPanier" method="post">
 				<div>
 					<label for="article">Choisissez vos articles:</label> <select
 						name="article">
-						<c:forEach var="a" items="${articles }">
+						<c:forEach var="a" items="${articles}">
 							<c:set var="nom" value="${a.nom}"></c:set>
 							<c:set var="id" value="${a.idArticle}"></c:set>
 							<option value="${id}" />${nom}</option>
@@ -60,11 +66,46 @@
 						value="1" class="form-control" /> <label for="quantite"
 						class="text-black">Quantite</label>
 				</p>
-				<br>
-				<input type="submit" value="Ajouter au panier" class="btn btn-dark">
+				<br> <input type="submit" value="Ajouter au panier"
+					class="btn btn-dark">
 			</form>
 
 		</div>
+
+
+		<section class="factureClient">
+
+			<table border="1" width="100%" cellspacing="6" cellpadding="10">
+
+				<caption>Voici le récapitulatif de votre commande</caption>
+				<thead>
+					<tr>
+						<th width="20%">Articles</th>
+						<th width="20%">Quantité</th>
+						<th width="40%">Prix total</th>
+					</tr>
+				</thead>
+				<!-- 				<tfoot> -->
+				<!-- 					<tr> -->
+				<!-- 						<th width="50%">Total</th> -->
+				<!-- 						<th width="50%">0</th> -->
+				<!-- 					</tr> -->
+				<!-- 				</tfoot> -->
+				<tbody>
+					<c:forEach var="p" items="${sessionScope.panier.panier}">
+						<tr>
+							<td><c:out value="${p.value.article.nom}"></c:out></td>
+							<td><c:out value="${p.value.quantite}"></c:out></td>
+							<td><c:out value="${p.value.somme}"></c:out></td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+			<form action="servletRecap" method="post">
+				<input type="submit" value="Valider le panier" class="btn btn-dark">
+			</form>
+		</section>
+
 
 		<div class="container footer">
 			<footer class="footer-distributed d-flex justify-content-between">
@@ -91,6 +132,8 @@
 				</div>
 			</footer>
 		</div>
+
+		<div></div>
 
 
 	</div>
