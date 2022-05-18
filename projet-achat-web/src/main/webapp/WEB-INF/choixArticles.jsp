@@ -47,7 +47,7 @@
 		<section>
 			<h1 class=text-center>
 				La commande de
-				<c:out value="${client.nom}"></c:out>
+				<c:out value="${client.prenom}"></c:out> <c:out value="${client.nom}"></c:out>
 				(montant panier:
 				<c:out value="${sessionScope.panier.total}"></c:out>
 				€)

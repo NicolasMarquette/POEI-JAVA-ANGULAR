@@ -45,7 +45,7 @@
 
 		<p class="display-5 text-center">
 			Félicitation
-			<c:out value="${client.nom}"></c:out>
+			 <c:out value="${client.prenom}"></c:out> <c:out value="${client.nom}"></c:out>
 			. Votre commande a bien été validée.<br> Montant total de la
 			commande :
 			<c:out value="${sessionScope.total}"></c:out>
