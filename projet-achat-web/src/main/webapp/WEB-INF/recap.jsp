@@ -44,7 +44,7 @@
 		</div>
 
 		<section>
-			<h1>
+			<h1 class=text-center>
 				La commande de
 				<c:out value="${client.nom}"></c:out>
 				(montant panier:
@@ -85,12 +85,15 @@
 			<form action="servletCommande" method="post">
 				<input type="submit" value="Valider la commande"
 					class="btn btn-dark">
-			</form>
+			</form><br>
 			<form action="servletRetourPanier" method="post">
 				<input type="submit" value="Retour au panier" class="btn btn-dark">
-			</form>
+			</form><br><br>
 		</section>
 	</div>
+	
+	<div class="container footer">
+			<footer class="footer-distributed d-flex justify-content-between">
 	<div class="container bloc-sm">
 		<div class="row">
 			<div class="col-sm-12">
@@ -131,6 +134,7 @@
 				</nav>
 			</div>
 		</div>
+		</div></footer>
 	</div>
 </body>
 </html>

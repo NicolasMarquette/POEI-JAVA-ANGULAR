@@ -88,6 +88,9 @@
 			</form>
 		</div>
 
+
+<div class="container footer">
+			<footer class="footer-distributed d-flex justify-content-between">
 		<div class="container bloc-sm">
 			<div class="row">
 				<div class="col-sm-12">
@@ -129,7 +132,8 @@
 				</div>
 			</div>
 		</div>
-
+</footer>
+</div>
 	</div>
 
 </body>

@@ -61,6 +61,8 @@
 			alt="Votre commande est validée">
 	</div>
 
+<div class="container footer">
+			<footer class="footer-distributed d-flex justify-content-between">
 	<div class="container bloc-sm">
 		<div class="row">
 			<div class="col-sm-12">
@@ -100,7 +102,9 @@
 					</div>
 				</nav>
 			</div>
+			</div>
 		</div>
+		</footer>
 	</div>
 </body>
 </html>

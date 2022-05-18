@@ -45,13 +45,13 @@
 			<p class="menuhr"></p>
 		</div>
 		<section>
-			<h1>
+			<h1 class=text-center>
 				La commande de
 				<c:out value="${client.nom}"></c:out>
 				(montant panier:
 				<c:out value="${sessionScope.panier.total}"></c:out>
 				€)
-			</h1>
+			</h1><br>
 
 		</section>
 
@@ -77,44 +77,7 @@
 				<br> <input type="submit" value="Ajouter au panier"
 					class="btn btn-dark">
 			</form>
-
-			<section class="factureClient">
-
-				<table border="1" width="100%" cellspacing="6" cellpadding="10">
-
-					<caption>Voici le récapitulatif de votre commande</caption>
-					<thead>
-						<tr>
-							<th width="20%">Articles</th>
-							<th width="20%">Quantité</th>
-							<th width="40%">Prix total</th>
-						</tr>
-					</thead>
-					<tfoot>
-						<tr>
-							<th width="50%">Total</th>
-							<th width="50%">0</th>
-						</tr>
-					</tfoot>
-					<tbody>
-						<tr>
-							<td width="50%">test1</td>
-							<td width="50%">26</td>
-						</tr>
-						<tr>
-							<td width="50%">test2</td>
-							<td width="50%">32</td>
-						</tr>
-						<tr>
-							<td width="50%">test3</td>
-							<td width="50%">12</td>
-						</tr>
-					</tbody>
-				</table>
-
-			</section>
-
-
+<br>
 		</div>
 
 
@@ -147,11 +110,12 @@
 				</tbody>
 			</table>
 			<form action="servletRecap" method="post">
-				<input type="submit" value="Valider le panier" class="btn btn-dark">
+				<input type="submit" value="Valider le panier" class="btn btn-dark"><br><br>
 			</form>
 		</section>
 
-
+<div class="container footer">
+			<footer class="footer-distributed d-flex justify-content-between">
 		<div class="container bloc-sm">
 			<div class="row">
 				<div class="col-sm-12">
@@ -193,7 +157,8 @@
 				</div>
 			</div>
 		</div>
-
+</footer>
+</div>
 
 
 
