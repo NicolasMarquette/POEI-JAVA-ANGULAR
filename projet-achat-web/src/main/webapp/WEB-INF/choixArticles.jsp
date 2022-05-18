@@ -24,12 +24,15 @@
 		<div class="container header">
 			<header class="d-flex">
 				<h1 class="logo navbar-brand">
-					<img alt="sushi logo" src="images/logo/sushi_logo.png" />
+					<!-- Pas oublier de le copier dans les autres pages -->
+					<a class="logo" href="accueil.jsp"><img alt="sushi logo"
+						src="images/logo/sushi_logo.png"
+						style="width: 300px; height: 250px;" /></a>
 				</h1>
 				<nav class="d-flex align-self-center">
 					<ul class="nav nav-pills nav-justified">
-						<li class="nav-item p-2 flex-fill"><a class="nav-link"
-							href="accueil.jsp">Itadakimasu</a></li>
+						<!-- <li class="nav-item p-2 flex-fill"><a class="nav-link"
+							href="accueil.jsp">Itadakimasu</a></li> -->
 						<li class="nav-item p-2 flex-fill"><a class="nav-link"
 							href="carte.jsp">Notre carte</a></li>
 						<li class="nav-item p-2 flex-fill"><a class="nav-link"

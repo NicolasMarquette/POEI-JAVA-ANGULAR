@@ -50,7 +50,7 @@ public class ServletPanier extends HttpServlet {
 		articles.setPanier(idArticle, article, quantite);
 		x.setAttribute("panier", articles);
 		
-		request.getRequestDispatcher("WEB-INF/choixArticles.jsp").forward(request, response);
+		request.getRequestDispatcher("servletRetourPanier").forward(request, response);
 	}
 
 	/**

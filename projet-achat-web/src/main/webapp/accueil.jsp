@@ -6,17 +6,15 @@
 <head>
 <meta charset="UTF-8">
 <title>accueil</title>
-<link rel="preconnect" href="https://fonts.gstatic.com/%22%3E" />
-<link
-	href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&display=swap"
-	rel="stylesheet" />
-<link href="./css/all.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" />
+<link href="cssFontAwesome/all.css" rel="stylesheet" />
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet" />
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <link href="css/style.css" rel="stylesheet" />
+
 </head>
 
 <body>
@@ -100,8 +98,8 @@
 		<div class="container">
 			<p class=" text-center" style="font-family:Trebuchet MS;font-size:200%">Livraison à domicile de plats
 				japonais</p>
-			<p class=" text-center" style="font-family:Trebuchet MS;font-size:200%">Préparation maison, produits
-				frais</p>
+			<p class=" text-center" style="font-family:Trebuchet MS;font-size:200%"><i class="fas fa-heart"></i> Préparation maison, produits
+				frais <i class="fas fa-heart"></i></p>
 			<br>
 		</div>
 
@@ -111,8 +109,7 @@
 					<p class="footer-company-name">Itadakimasu © 2022</p>
 					
 				</div>
-					<i class="fab fa-instagram"></i><i class="fab fa-twitter"></i>
-					<i class="fab fa-linkedin"></i>
+					
 				<div class="footer-right">
 
 					<p>Contact Us</p>

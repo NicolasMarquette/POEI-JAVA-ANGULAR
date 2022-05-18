@@ -3,16 +3,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="preconnect" href="https://fonts.gstatic.com/%22%3E" />
-<link
-	href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&display=swap"
-	rel="stylesheet" />
+<link rel="preconnect" href="https://fonts.gstatic.com" />
+<link href="cssFontAwesome/all.css" rel="stylesheet" />
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet" />
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <link href="css/style.css" rel="stylesheet" />
+
 <meta charset="UTF-8">
 <title>Authentification</title>
 </head>
@@ -23,12 +22,15 @@
 		<div class="container header">
 			<header class="d-flex">
 				<h1 class="logo navbar-brand">
-					<img alt="sushi logo" src="images/logo/sushi_logo.png" />
+					<!-- Pas oublier de le copier dans les autres pages -->
+					<a class="logo" href="accueil.jsp"><img alt="sushi logo"
+						src="images/logo/sushi_logo.png"
+						style="width: 300px; height: 250px;" /></a>
 				</h1>
 				<nav class="d-flex align-self-center">
 					<ul class="nav nav-pills nav-justified">
-						<li class="nav-item p-2 flex-fill"><a class="nav-link"
-							href="accueil.jsp">Itadakimasu</a></li>
+						<!-- <li class="nav-item p-2 flex-fill"><a class="nav-link"
+							href="accueil.jsp">Itadakimasu</a></li> -->
 						<li class="nav-item p-2 flex-fill"><a class="nav-link"
 							href="carte.jsp">Notre carte</a></li>
 						<li class="nav-item p-2 flex-fill"><a class="nav-link"
